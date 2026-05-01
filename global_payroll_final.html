@@ -6441,6 +6441,87 @@
                         ]
                     },
                     {
+                        title: "Income Tax Brackets",
+                        icon: ICON_MAP["fas fa-calculator"],
+                        color: ACCENT_COLOR_MAP["MY"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "Personal Relief", value: "RM 9,000 standard relief for individual" },
+                            { label: "Tax-free Threshold", value: "First RM 5,000 of chargeable income at 0%" },
+                            { label: "Top Marginal Rate", value: "30% on chargeable income above RM 2,000,000" },
+                            { label: "Non-resident Rate", value: "Flat 30% with no reliefs" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Malaysia Personal Income Tax Rates 2025 (Resident)</strong>",
+                                headers: ["<strong>Chargeable Income (RM)</strong>", "<strong>Rate</strong>", "<strong>Tax on Lower Limit</strong>", "<strong>Effective on Top of Band</strong>"],
+                                rows: [
+                                    ["0 – 5,000", "0%", "RM 0", "RM 0"],
+                                    ["5,001 – 20,000", "1%", "RM 0", "RM 150"],
+                                    ["20,001 – 35,000", "3%", "RM 150", "RM 600"],
+                                    ["35,001 – 50,000", "6%", "RM 600", "RM 1,500"],
+                                    ["50,001 – 70,000", "11%", "RM 1,500", "RM 3,700"],
+                                    ["70,001 – 100,000", "19%", "RM 3,700", "RM 9,400"],
+                                    ["100,001 – 400,000", "25%", "RM 9,400", "RM 84,400"],
+                                    ["400,001 – 600,000", "26%", "RM 84,400", "RM 136,400"],
+                                    ["600,001 – 2,000,000", "28%", "RM 136,400", "RM 528,400"],
+                                    ["Above 2,000,000", "30%", "RM 528,400", "No cap"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Earnings Reports",
+                        icon: ICON_MAP["fas fa-chart-line"],
+                        color: ACCENT_COLOR_MAP["MY"],
+                        type: "earnings-reports",
+                        details: [
+                            { label: "Form EA", value: "Annual statement of remuneration to employee by 28 Feb" },
+                            { label: "Form E", value: "Employer return to LHDN by 31 March" },
+                            { label: "CP39", value: "Monthly PCB (MTD) tax remittance schedule" },
+                            { label: "CP58", value: "Statement to commission agents by 31 March" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Malaysia Mandatory Payroll Reports</strong>",
+                                headers: ["<strong>Report</strong>", "<strong>Form</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>", "<strong>Submitted To</strong>"],
+                                rows: [
+                                    ["Monthly Tax Deduction", "CP39 / e-PCB", "Monthly", "15th of following month", "LHDN (IRBM)"],
+                                    ["Employee Statement", "EA", "Annual", "28 Feb", "Issued to employee"],
+                                    ["Employer Return", "E", "Annual", "31 March", "LHDN (IRBM)"],
+                                    ["EPF Contribution", "Form A", "Monthly", "15th of following month", "KWSP / EPF"],
+                                    ["SOCSO/EIS", "Form 8A", "Monthly", "15th of following month", "PERKESO"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["MY"],
+                        type: "government-forms",
+                        details: [
+                            { label: "LHDN", value: "Inland Revenue Board (PIT) — Forms EA, E, CP39, CP38" },
+                            { label: "EPF (KWSP)", value: "Provident Fund — Form A monthly contribution" },
+                            { label: "SOCSO (PERKESO)", value: "Social Security — Form 8A monthly" },
+                            { label: "EIS", value: "Employment Insurance System — combined with SOCSO Form 8A" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required Malaysian Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["EA", "Annual employee remuneration statement", "By 28 Feb", "Employer"],
+                                    ["E", "Employer annual return", "By 31 March", "Employer"],
+                                    ["CP39 / e-PCB", "Monthly PCB (MTD) schedule", "By 15th of next month", "Employer"],
+                                    ["CP38", "Special LHDN deduction order", "As directed", "Employer"],
+                                    ["EPF Form A", "Monthly EPF contribution", "By 15th of next month", "Employer"],
+                                    ["SOCSO Form 8A", "Monthly SOCSO/EIS contribution", "By 15th of next month", "Employer"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         title: "Termination",
                         icon: ICON_MAP["fas fa-handshake"],
                         color: ACCENT_COLOR_MAP["MY_TERMINATION"],
@@ -6592,6 +6673,79 @@
                                             ["Capital Gains", "26% box 2 rate on gains"]
                                         ]
                                     }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Income Tax Brackets",
+                        icon: ICON_MAP["fas fa-calculator"],
+                        color: ACCENT_COLOR_MAP["NL"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "Box 1 Income", value: "Income from employment, taxed progressively" },
+                            { label: "Bracket 1", value: "35.82% on first €38,441 (2025) — combined wage tax + national insurance" },
+                            { label: "Bracket 2", value: "37.48% on €38,441 to €76,817" },
+                            { label: "Bracket 3", value: "49.50% on income above €76,817" },
+                            { label: "30% Ruling", value: "Eligible expats may exempt 30% of salary from tax" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Netherlands Income Tax (Box 1) 2025</strong>",
+                                headers: ["<strong>Bracket</strong>", "<strong>Income Range (€)</strong>", "<strong>Combined Rate</strong>", "<strong>Includes</strong>"],
+                                rows: [
+                                    ["Bracket 1", "0 – 38,441", "35.82%", "Wage tax + AOW/WLZ/ANW national insurance"],
+                                    ["Bracket 2", "38,441 – 76,817", "37.48%", "Wage tax only (national insurance capped)"],
+                                    ["Bracket 3", "Above 76,817", "49.50%", "Wage tax only"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Earnings Reports",
+                        icon: ICON_MAP["fas fa-chart-line"],
+                        color: ACCENT_COLOR_MAP["NL"],
+                        type: "earnings-reports",
+                        details: [
+                            { label: "Loonaangifte", value: "Monthly payroll tax return to Belastingdienst" },
+                            { label: "Jaaropgaaf", value: "Annual employer statement to each employee by 1 Feb" },
+                            { label: "IB-47", value: "Used to report fees/equity to non-employees" },
+                            { label: "Pension Reports", value: "Monthly UPA submission to pension fund" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Netherlands Mandatory Payroll Reports</strong>",
+                                headers: ["<strong>Report</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>", "<strong>Submitted To</strong>"],
+                                rows: [
+                                    ["Loonaangifte (wage tax return)", "Monthly", "End of following month", "Belastingdienst"],
+                                    ["Jaaropgaaf (annual employee statement)", "Annual", "By 1 February", "Issued to employee"],
+                                    ["UPA (pension data)", "Monthly", "By end of following month", "Pension fund"],
+                                    ["IB-47", "As applicable", "Reporting period", "Belastingdienst"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["NL"],
+                        type: "government-forms",
+                        details: [
+                            { label: "Belastingdienst", value: "Tax authority — Loonaangifte, Jaaropgaaf" },
+                            { label: "UWV", value: "Employee insurance — sickness/unemployment claims" },
+                            { label: "30% Ruling Application", value: "Submit jointly via employer to Belastingdienst" },
+                            { label: "A1 Certificate", value: "For cross-border employees within EU" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required Dutch Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["Loonaangifte", "Monthly wage tax & social premiums", "By end of next month", "Employer"],
+                                    ["Jaaropgaaf", "Annual employee earnings statement", "By 1 Feb", "Employer"],
+                                    ["Model Opgaaf gegevens loonheffingen", "New employee tax/social info", "At hire", "Employee"],
+                                    ["30% ruling joint application", "Tax exemption for expats", "At hire", "Employer + employee"],
+                                    ["UPA", "Pension contribution data", "Monthly", "Employer"]
                                 ]
                             }
                         ]
@@ -6754,6 +6908,81 @@
                         ]
                     },
                     {
+                        title: "Income Tax Brackets",
+                        icon: ICON_MAP["fas fa-calculator"],
+                        color: ACCENT_COLOR_MAP["PL"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "Tax-free Amount", value: "PLN 30,000 annual personal allowance" },
+                            { label: "Lower Bracket", value: "12% on income up to PLN 120,000 (after allowance)" },
+                            { label: "Upper Bracket", value: "32% on income above PLN 120,000" },
+                            { label: "Solidarity Tax", value: "Additional 4% on income above PLN 1,000,000" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Poland Personal Income Tax (PIT) 2025</strong>",
+                                headers: ["<strong>Bracket</strong>", "<strong>Income Range (PLN)</strong>", "<strong>Rate</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["Tax-free", "0 – 30,000", "0%", "Personal allowance"],
+                                    ["Bracket 1", "30,001 – 120,000", "12%", "Reduced by 3,600 (allowance × rate)"],
+                                    ["Bracket 2", "Above 120,000", "32%", "Plus PLN 10,800 from lower bracket"],
+                                    ["Solidarity", "Above 1,000,000", "+4%", "Additional levy on excess"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Earnings Reports",
+                        icon: ICON_MAP["fas fa-chart-line"],
+                        color: ACCENT_COLOR_MAP["PL"],
+                        type: "earnings-reports",
+                        details: [
+                            { label: "PIT-11", value: "Annual employer information form to tax office and employee" },
+                            { label: "PIT-4R", value: "Annual PIT withholding summary" },
+                            { label: "ZUS DRA", value: "Monthly social contribution declaration" },
+                            { label: "RCA / RZA", value: "Monthly per-employee ZUS reporting" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Poland Mandatory Payroll Reports</strong>",
+                                headers: ["<strong>Report</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>", "<strong>Submitted To</strong>"],
+                                rows: [
+                                    ["PIT-4R", "Annual", "By 31 January", "Tax office (US)"],
+                                    ["PIT-11", "Annual", "By end of February", "Tax office + employee"],
+                                    ["ZUS DRA", "Monthly", "By 15th (or 20th)", "ZUS (Social Insurance)"],
+                                    ["ZUS RCA / RZA", "Monthly", "With ZUS DRA", "ZUS"],
+                                    ["PIT advance payment", "Monthly", "By 20th of next month", "Tax office"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["PL"],
+                        type: "government-forms",
+                        details: [
+                            { label: "Urząd Skarbowy (US)", value: "Tax office — PIT-11, PIT-4R" },
+                            { label: "ZUS", value: "Social Insurance — DRA, RCA, RZA" },
+                            { label: "PIT-2", value: "Employee declaration to apply tax-free allowance" },
+                            { label: "PIT-37", value: "Employee annual self-return (most common)" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required Polish Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["PIT-2", "Employee declaration for allowance", "At hire / on change", "Employee"],
+                                    ["PIT-11", "Annual income & withholding statement", "By end of Feb", "Employer"],
+                                    ["PIT-4R", "Annual withholding summary", "By 31 Jan", "Employer"],
+                                    ["ZUS DRA", "Monthly contribution settlement", "By 15th of next month", "Employer"],
+                                    ["ZUS RCA", "Per-employee contribution detail", "With DRA", "Employer"],
+                                    ["ZUS ZWUA / ZUA", "Deregistration / registration", "Within 7 days of change", "Employer"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         title: "Termination",
                         icon: ICON_MAP["fas fa-handshake"],
                         color: ACCENT_COLOR_MAP["PL_TERMINATION"],
@@ -6904,6 +7133,83 @@
                                             ["Capital Gains", "28% flat rate on gains"]
                                         ]
                                     }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Income Tax Brackets",
+                        icon: ICON_MAP["fas fa-calculator"],
+                        color: ACCENT_COLOR_MAP["PT"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "IRS", value: "Imposto sobre o Rendimento das Pessoas Singulares (personal income tax)" },
+                            { label: "Categoria A", value: "Income from employment, withheld monthly by employer" },
+                            { label: "Top Rate", value: "48% on income above €83,696 (2025)" },
+                            { label: "Solidarity Surcharge", value: "+2.5% on income €80k–€250k; +5% above €250k" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Portugal IRS Brackets 2025</strong>",
+                                headers: ["<strong>Bracket</strong>", "<strong>Income Range (€)</strong>", "<strong>Rate</strong>", "<strong>Tax on Lower Limit</strong>"],
+                                rows: [
+                                    ["1", "0 – 8,059", "13.00%", "€0"],
+                                    ["2", "8,059 – 12,160", "16.50%", "€1,047"],
+                                    ["3", "12,160 – 17,233", "22.00%", "€1,723"],
+                                    ["4", "17,233 – 22,306", "25.00%", "€2,839"],
+                                    ["5", "22,306 – 28,400", "32.00%", "€4,107"],
+                                    ["6", "28,400 – 41,629", "35.50%", "€6,058"],
+                                    ["7", "41,629 – 44,987", "43.50%", "€10,756"],
+                                    ["8", "44,987 – 83,696", "45.00%", "€12,217"],
+                                    ["9", "Above 83,696", "48.00%", "€29,636"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Earnings Reports",
+                        icon: ICON_MAP["fas fa-chart-line"],
+                        color: ACCENT_COLOR_MAP["PT"],
+                        type: "earnings-reports",
+                        details: [
+                            { label: "DMR", value: "Monthly Remuneration Statement to Tax Authority by 10th" },
+                            { label: "Modelo 10", value: "Annual statement of incomes and withholdings by 10 February" },
+                            { label: "Social Security DRI", value: "Monthly remuneration declaration to Segurança Social by 10th" },
+                            { label: "Modelo 30", value: "Cross-border payments report" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Portugal Mandatory Payroll Reports</strong>",
+                                headers: ["<strong>Report</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>", "<strong>Submitted To</strong>"],
+                                rows: [
+                                    ["DMR (Declaração Mensal de Remunerações)", "Monthly", "By 10th of next month", "Autoridade Tributária"],
+                                    ["Segurança Social DRI", "Monthly", "By 10th of next month", "Segurança Social"],
+                                    ["Modelo 10", "Annual", "By 10 Feb", "Autoridade Tributária"],
+                                    ["Modelo 30", "As applicable", "Per occurrence", "Autoridade Tributária"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["PT"],
+                        type: "government-forms",
+                        details: [
+                            { label: "Autoridade Tributária", value: "Tax authority — Modelo 3, DMR, Modelo 10" },
+                            { label: "Segurança Social", value: "Social Security — DRI monthly" },
+                            { label: "IRS Withholding Tables", value: "Monthly withholding rates per Despacho" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required Portuguese Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["DMR", "Monthly tax & remuneration statement", "By 10th of next month", "Employer"],
+                                    ["Modelo 10", "Annual income & withholding", "By 10 Feb", "Employer"],
+                                    ["Modelo 3 (IRS)", "Annual personal tax return", "By 30 June", "Employee"],
+                                    ["DRI Segurança Social", "Monthly social security", "By 10th of next month", "Employer"],
+                                    ["Modelo 30", "Payments to non-residents", "Per transaction", "Employer"]
                                 ]
                             }
                         ]
@@ -7066,6 +7372,82 @@
                         ]
                     },
                     {
+                        title: "Income Tax Brackets",
+                        icon: ICON_MAP["fas fa-calculator"],
+                        color: ACCENT_COLOR_MAP["ES"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "IRPF", value: "Impuesto sobre la Renta de las Personas Físicas" },
+                            { label: "State + Regional", value: "Tax has state portion + autonomous community portion" },
+                            { label: "Personal Minimum", value: "€5,550 base personal allowance" },
+                            { label: "Top State Rate", value: "24.5% (state); combined with regional reaches ~47–54%" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Spain IRPF Combined State+Regional Approximate Rates 2025</strong>",
+                                headers: ["<strong>Bracket</strong>", "<strong>Income Range (€)</strong>", "<strong>Approx. Combined Rate</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["1", "0 – 12,450", "19%", "State 9.5% + autonomous"],
+                                    ["2", "12,450 – 20,200", "24%", "State 12% + autonomous"],
+                                    ["3", "20,200 – 35,200", "30%", "State 15% + autonomous"],
+                                    ["4", "35,200 – 60,000", "37%", "State 18.5% + autonomous"],
+                                    ["5", "60,000 – 300,000", "45%", "State 22.5% + autonomous"],
+                                    ["6", "Above 300,000", "47%+", "State 24.5% + autonomous (varies by region)"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Earnings Reports",
+                        icon: ICON_MAP["fas fa-chart-line"],
+                        color: ACCENT_COLOR_MAP["ES"],
+                        type: "earnings-reports",
+                        details: [
+                            { label: "Modelo 111", value: "Quarterly IRPF withholding return" },
+                            { label: "Modelo 190", value: "Annual summary of IRPF withholdings" },
+                            { label: "TC1 / TC2", value: "Monthly social security contribution forms" },
+                            { label: "RNT / RLC", value: "SLD electronic monthly contributions to Tesorería General" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Spain Mandatory Payroll Reports</strong>",
+                                headers: ["<strong>Report</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>", "<strong>Submitted To</strong>"],
+                                rows: [
+                                    ["Modelo 111", "Quarterly", "By 20th of month after quarter", "Agencia Tributaria"],
+                                    ["Modelo 190", "Annual", "By 31 January", "Agencia Tributaria"],
+                                    ["RNT (Relación Nominal)", "Monthly", "Monthly", "Tesorería General SS"],
+                                    ["RLC (Recibo de Liquidación)", "Monthly", "Monthly", "Tesorería General SS"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["ES"],
+                        type: "government-forms",
+                        details: [
+                            { label: "Agencia Tributaria", value: "Tax agency — Modelos 111, 190, 145, 100" },
+                            { label: "Tesorería General SS", value: "Social Security — RNT, RLC, TA series" },
+                            { label: "Modelo 145", value: "Employee personal & family circumstances for withholding" },
+                            { label: "Modelo 100", value: "Annual personal IRPF return" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required Spanish Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["Modelo 145", "Withholding personal data", "At hire / on change", "Employee"],
+                                    ["Modelo 111", "Quarterly IRPF withholdings", "By 20th post-quarter", "Employer"],
+                                    ["Modelo 190", "Annual IRPF summary", "By 31 Jan", "Employer"],
+                                    ["TA.2/S", "Affiliation to Social Security", "At hire", "Employer"],
+                                    ["RNT / RLC", "Monthly contribution detail & receipt", "Monthly", "Employer"],
+                                    ["Modelo 100", "Personal income tax return", "Apr–Jun", "Employee"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         title: "Termination",
                         icon: ICON_MAP["fas fa-handshake"],
                         color: ACCENT_COLOR_MAP["ES_TERMINATION"],
@@ -7216,6 +7598,84 @@
                                             ["Capital Gains", "15% on listed shares; exempt if <25%"]
                                         ]
                                     }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Income Tax Brackets",
+                        icon: ICON_MAP["fas fa-calculator"],
+                        color: ACCENT_COLOR_MAP["TH"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "Personal Allowance", value: "THB 60,000 per year (single filer)" },
+                            { label: "Employment Deduction", value: "50% of income, capped at THB 100,000" },
+                            { label: "Top Rate", value: "35% on income above THB 5,000,000" },
+                            { label: "Tax-free Threshold", value: "First THB 150,000 of net assessable income at 0%" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Thailand PIT Brackets 2025</strong>",
+                                headers: ["<strong>Bracket</strong>", "<strong>Net Assessable Income (THB)</strong>", "<strong>Rate</strong>", "<strong>Tax on Lower Limit</strong>"],
+                                rows: [
+                                    ["1", "0 – 150,000", "0%", "฿0"],
+                                    ["2", "150,001 – 300,000", "5%", "฿0"],
+                                    ["3", "300,001 – 500,000", "10%", "฿7,500"],
+                                    ["4", "500,001 – 750,000", "15%", "฿27,500"],
+                                    ["5", "750,001 – 1,000,000", "20%", "฿65,000"],
+                                    ["6", "1,000,001 – 2,000,000", "25%", "฿115,000"],
+                                    ["7", "2,000,001 – 5,000,000", "30%", "฿365,000"],
+                                    ["8", "Above 5,000,000", "35%", "฿1,265,000"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Earnings Reports",
+                        icon: ICON_MAP["fas fa-chart-line"],
+                        color: ACCENT_COLOR_MAP["TH"],
+                        type: "earnings-reports",
+                        details: [
+                            { label: "PND.1", value: "Monthly withholding tax return on employment income" },
+                            { label: "PND.1 Kor", value: "Annual employer summary submitted with PND.91" },
+                            { label: "Sor Por Sor 1-10", value: "Monthly Social Security contribution form" },
+                            { label: "50 Bis", value: "Employee annual income certificate by 15 Feb" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Thailand Mandatory Payroll Reports</strong>",
+                                headers: ["<strong>Report</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>", "<strong>Submitted To</strong>"],
+                                rows: [
+                                    ["PND.1 (monthly withholding)", "Monthly", "By 7th of next month", "Revenue Department"],
+                                    ["PND.1 Kor (annual)", "Annual", "By end of February", "Revenue Department"],
+                                    ["Sor Por Sor 1-10", "Monthly", "By 15th of next month", "Social Security Office"],
+                                    ["Form 50 Bis", "Annual", "By 15 February", "Issued to employee"],
+                                    ["Workmen Compensation Fund", "Annual", "By 31 January", "Social Security Office"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["TH"],
+                        type: "government-forms",
+                        details: [
+                            { label: "Revenue Department", value: "PIT — PND.1, PND.1 Kor, PND.91, 50 Bis" },
+                            { label: "Social Security Office", value: "SSO — Sor Por Sor forms, Workmen Comp" },
+                            { label: "Provident Fund", value: "Voluntary; member statements via fund manager" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required Thai Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["PND.1", "Monthly withholding", "By 7th of next month", "Employer"],
+                                    ["PND.1 Kor", "Annual withholding summary", "By end Feb", "Employer"],
+                                    ["PND.91", "Annual personal income tax (employment)", "By end Mar", "Employee"],
+                                    ["50 Bis", "Annual employee earnings cert", "By 15 Feb", "Employer"],
+                                    ["Sor Por Sor 1-10", "Monthly SSO contribution", "By 15th of next month", "Employer"],
+                                    ["Sor Por Sor 1-03", "New employee SSO registration", "Within 30 days of hire", "Employer"]
                                 ]
                             }
                         ]
@@ -7372,6 +7832,79 @@
                                             ["Capital Gains", "Exempt if held >2yrs; else income rates"]
                                         ]
                                     }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Income Tax Brackets",
+                        icon: ICON_MAP["fas fa-calculator"],
+                        color: ACCENT_COLOR_MAP["TR"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "Gelir Vergisi", value: "Personal income tax — progressive 15%–40%" },
+                            { label: "Minimum Wage Exemption", value: "Income up to net minimum wage exempt from tax" },
+                            { label: "SGK Withheld First", value: "Social security premium reduces taxable base" },
+                            { label: "Stamp Duty", value: "0.759% wage stamp tax on gross" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Turkey Income Tax Brackets 2025 (approx, indexed annually)</strong>",
+                                headers: ["<strong>Bracket</strong>", "<strong>Income Range (TRY)</strong>", "<strong>Rate</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["1", "0 – 110,000", "15%", "After SGK deduction"],
+                                    ["2", "110,000 – 230,000", "20%", "—"],
+                                    ["3", "230,000 – 580,000", "27%", "For employment income"],
+                                    ["4", "580,000 – 3,000,000", "35%", "—"],
+                                    ["5", "Above 3,000,000", "40%", "Top marginal"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Earnings Reports",
+                        icon: ICON_MAP["fas fa-chart-line"],
+                        color: ACCENT_COLOR_MAP["TR"],
+                        type: "earnings-reports",
+                        details: [
+                            { label: "Muhtasar Beyannamesi", value: "Monthly withholding tax return by 26th" },
+                            { label: "Aylık Prim Hizmet Belgesi", value: "Monthly SGK premium service document" },
+                            { label: "e-Bordro", value: "Electronic payslip required" },
+                            { label: "Annual Personnel Statements", value: "To employees with year-end summary" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Turkey Mandatory Payroll Reports</strong>",
+                                headers: ["<strong>Report</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>", "<strong>Submitted To</strong>"],
+                                rows: [
+                                    ["Muhtasar (withholding)", "Monthly", "By 26th of next month", "Vergi Dairesi (Tax Office)"],
+                                    ["Aylık Prim Hizmet Belgesi", "Monthly", "By 26th of next month", "SGK"],
+                                    ["Damga vergisi", "Monthly", "With Muhtasar", "Vergi Dairesi"],
+                                    ["Annual income statement", "Annual", "By 31 March", "Issued to employee"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["TR"],
+                        type: "government-forms",
+                        details: [
+                            { label: "GİB", value: "Revenue Administration — Muhtasar, Annual Beyanname" },
+                            { label: "SGK", value: "Social Security — Aylık Prim Hizmet Belgesi" },
+                            { label: "İŞKUR", value: "Employment agency — termination notifications" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required Turkish Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["Muhtasar Beyannamesi", "Withholding tax return", "Monthly by 26th", "Employer"],
+                                    ["Aylık Prim Hizmet Belgesi", "SGK premium service document", "Monthly by 26th", "Employer"],
+                                    ["İşe Giriş Bildirgesi", "New hire SGK notification", "Day before start", "Employer"],
+                                    ["İşten Ayrılış Bildirgesi", "Termination SGK notice", "Within 10 days", "Employer"],
+                                    ["Yıllık Gelir Vergisi Beyannamesi", "Annual personal tax (if required)", "By 31 March", "Employee"]
                                 ]
                             }
                         ]
@@ -7534,6 +8067,79 @@
                         ]
                     },
                     {
+                        title: "Income Tax Brackets",
+                        icon: ICON_MAP["fas fa-calculator"],
+                        color: ACCENT_COLOR_MAP["AE"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "Personal Income Tax", value: "None — UAE imposes no personal income tax on employment" },
+                            { label: "Corporate Tax", value: "9% federal corporate tax on profits above AED 375,000 (since 2023)" },
+                            { label: "VAT", value: "5% on most goods/services (employer-side)" },
+                            { label: "Free Zones", value: "Most retain 0% personal tax + corporate exemptions" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>UAE Personal Tax Treatment 2025</strong>",
+                                headers: ["<strong>Item</strong>", "<strong>Rate</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["Personal income tax", "0%", "No PIT for residents or expats"],
+                                    ["Social security (UAE nationals only)", "5% employee + 12.5% employer", "GPSSA pension"],
+                                    ["Social security (expats)", "0%", "Not applicable; gratuity instead"],
+                                    ["Federal corporate tax", "9%", "Above AED 375k profit (employer-side)"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Earnings Reports",
+                        icon: ICON_MAP["fas fa-chart-line"],
+                        color: ACCENT_COLOR_MAP["AE"],
+                        type: "earnings-reports",
+                        details: [
+                            { label: "Wage Protection System (WPS)", value: "Monthly salary submission via SIF file" },
+                            { label: "GPSSA Statements", value: "Pension contribution statements for UAE nationals" },
+                            { label: "End-of-Service Records", value: "Gratuity calculation tracking required" },
+                            { label: "MOHRE Filings", value: "Ministry of Human Resources reporting" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>UAE Mandatory Payroll Reports</strong>",
+                                headers: ["<strong>Report</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>", "<strong>Submitted To</strong>"],
+                                rows: [
+                                    ["WPS Salary File (SIF)", "Monthly", "Within 10 days of payroll cycle", "MOHRE via bank"],
+                                    ["GPSSA pension contribution", "Monthly", "By 15th of next month", "GPSSA (UAE nationals)"],
+                                    ["Quarterly labor reports", "Quarterly", "As scheduled", "MOHRE"],
+                                    ["End-of-Service settlement", "At termination", "Final settlement", "Employee"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["AE"],
+                        type: "government-forms",
+                        details: [
+                            { label: "MOHRE", value: "Ministry of Human Resources & Emiratisation — labor contracts, WPS" },
+                            { label: "GPSSA", value: "General Pension & Social Security Authority — UAE nationals" },
+                            { label: "DEWS", value: "DIFC Employee Workplace Savings — defined contribution gratuity (DIFC only)" },
+                            { label: "Emirates ID", value: "Required for all employees and dependents" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required UAE Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["Labor Contract (MOHRE)", "Standard or limited contract", "At hire", "Employer"],
+                                    ["WPS SIF File", "Monthly salary disbursement", "Each pay cycle", "Employer via bank"],
+                                    ["GPSSA Registration", "UAE national pension enrollment", "At hire", "Employer"],
+                                    ["End-of-Service Gratuity", "Settlement on termination", "Per Labour Law", "Employer"],
+                                    ["Work Permit / Labor Card", "Authorization to work", "At hire (expats)", "Employer"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         title: "Termination",
                         icon: ICON_MAP["fas fa-handshake"],
                         color: ACCENT_COLOR_MAP["AE_TERMINATION"],
@@ -7686,6 +8292,81 @@
                                             ["Capital Gains", "50% inclusion; taxed at income rates"]
                                         ]
                                     }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Income Tax Brackets",
+                        icon: ICON_MAP["fas fa-calculator"],
+                        color: ACCENT_COLOR_MAP["LU"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "Tax Classes", value: "Class 1 (single), 1A (single with child/65+), 2 (married)" },
+                            { label: "23 Brackets", value: "Highly progressive scale 0% to 42%" },
+                            { label: "Solidarity Surtax", value: "+7% (or +9% top class) on income tax (employment fund tax)" },
+                            { label: "Minimum Wage Tax-Free", value: "First €12,438 fully exempt" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Luxembourg Income Tax Brackets 2025 (Class 1)</strong>",
+                                headers: ["<strong>Bracket</strong>", "<strong>Income (€)</strong>", "<strong>Rate</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["1", "0 – 12,438", "0%", "Tax-free zone"],
+                                    ["2", "12,438 – 14,508", "8%", "—"],
+                                    ["3", "14,508 – 16,578", "9%", "—"],
+                                    ["4", "16,578 – 18,648", "10%", "—"],
+                                    ["5", "...", "...", "Brackets in increments of ~€2,151"],
+                                    ["Top", "Above 234,870", "42%", "Plus 9% solidarity surtax → 45.78%"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Earnings Reports",
+                        icon: ICON_MAP["fas fa-chart-line"],
+                        color: ACCENT_COLOR_MAP["LU"],
+                        type: "earnings-reports",
+                        details: [
+                            { label: "Monthly Withholding Declaration", value: "Filed via MyGuichet by 10th" },
+                            { label: "Annual Salary Certificate", value: "Issued to employee for tax filing" },
+                            { label: "CCSS Declarations", value: "Centre Commun Sécurité Sociale monthly" },
+                            { label: "Annual ACD Reconciliation", value: "Yearly tax certificate to ACD" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Luxembourg Mandatory Payroll Reports</strong>",
+                                headers: ["<strong>Report</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>", "<strong>Submitted To</strong>"],
+                                rows: [
+                                    ["Wage tax monthly declaration", "Monthly", "By 10th of next month", "ACD"],
+                                    ["CCSS contribution declaration", "Monthly", "By 10th of next month", "CCSS"],
+                                    ["Annual employer certificate", "Annual", "By end of February", "Issued to employee"],
+                                    ["Annual reconciliation", "Annual", "By end of February", "ACD"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["LU"],
+                        type: "government-forms",
+                        details: [
+                            { label: "ACD", value: "Administration des Contributions Directes (tax authority)" },
+                            { label: "CCSS", value: "Centre Commun de la Sécurité Sociale (social security)" },
+                            { label: "MyGuichet", value: "Electronic filing portal for declarations" },
+                            { label: "Lohnsteuerkarte", value: "Tax card with class and credits" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required Luxembourgish Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["Tax card (Lohnsteuerkarte)", "Withholding parameters", "At hire / annually", "Employee from ACD"],
+                                    ["Monthly RTS declaration", "Wage tax remittance", "By 10th of next month", "Employer"],
+                                    ["CCSS declaration", "Social security contributions", "By 10th of next month", "Employer"],
+                                    ["Annual employer certificate", "Year-end income summary", "By end Feb", "Employer"],
+                                    ["Form 100 / 163", "Personal annual tax return", "By 31 March", "Employee"]
                                 ]
                             }
                         ]
@@ -7887,7 +8568,7 @@
                         ]
                     },
                     {
-                        title: "Tax Brackets",
+                        title: "Income Tax Brackets",
                         icon: ICON_MAP["fas fa-chart-line"],
                         color: ACCENT_COLOR_MAP["VN_TAX_BRACKETS"],
                         type: "tax-brackets",
@@ -7988,6 +8669,32 @@
                                     ["Social Insurance Statement", "SI contribution summary", "December 31", "All employees", "Monthly contributions, total annual amount"],
                                     ["Employment Certificate", "Job verification", "Upon request", "Current/former employees", "Position, salary, employment period"],
                                     ["Severance Calculation", "Termination benefits", "Upon termination", "Terminated employees", "Service years, average salary, severance amount"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Government Forms",
+                        icon: ICON_MAP["fas fa-file-alt"],
+                        color: ACCENT_COLOR_MAP["VN"],
+                        type: "government-forms",
+                        details: [
+                            { label: "General Department of Taxation", value: "PIT — Forms 05/KK-TNCN, 02/KK-TNCN" },
+                            { label: "Social Insurance Vietnam", value: "SI/HI/UI — monthly D02-TS form" },
+                            { label: "Department of Labor", value: "Quarterly Form 01-LD labor report" },
+                            { label: "General Statistics Office", value: "Annual salary survey filing" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Required Vietnamese Payroll Forms</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>When Required</strong>", "<strong>Filed By</strong>"],
+                                rows: [
+                                    ["Form 05/KK-TNCN", "Monthly PIT withholding declaration", "By 20th of next month", "Employer"],
+                                    ["Form 02/KK-TNCN", "Annual PIT finalization", "By 31 March", "Employer"],
+                                    ["D02-TS", "Monthly SI/HI/UI declaration", "By end of month", "Employer"],
+                                    ["Form 01-LD", "Quarterly labor report", "Within 15 days of quarter end", "Employer"],
+                                    ["Form 02/CK-TNCN", "Personal PIT finalization", "By 31 March", "Employee"],
+                                    ["Annual Salary Survey", "Stat report to GSO", "As scheduled", "Employer"]
                                 ]
                             }
                         ]
