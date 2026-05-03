@@ -1896,6 +1896,9 @@
             <button class="view-tab" id="view-tab-token" onclick="switchView('token')">
                 <i class="fas fa-coins mr-2"></i>Token Vesting & Payroll
             </button>
+            <button class="view-tab" id="view-tab-us-states" onclick="switchView('us-states')">
+                <i class="fas fa-flag-usa mr-2"></i>US State Payroll
+            </button>
         </div>
 
         <!-- COUNTRY VIEW -->
@@ -1942,6 +1945,11 @@
         <!-- TOKEN VESTING VIEW (separate page) -->
         <div id="token-view" style="display:none;padding:1.5rem">
             <div id="token-page-content"></div>
+        </div>
+
+        <!-- US STATES VIEW -->
+        <div id="us-states-view" style="display:none;padding:1.5rem">
+            <div id="us-states-page-content"></div>
         </div>
 
     </div>
@@ -2019,6 +2027,14 @@
             "VN_DEDUCTIONS": "emerald",
             "VN_TAX_BRACKETS": "emerald", 
             "VN_EARNINGS": "emerald",
+            "BR": "green",
+            "BR_CLASSIFICATION": "orange",
+            "BR_DEDUCTIONS": "indigo",
+            "BR_TAX": "teal",
+            "BR_BENEFITS": "emerald",
+            "BR_LEAVE": "blue",
+            "BR_FORMS": "purple",
+            "BR_EQUITY": "purple",
             "CA_TERMINATION": "red",
             "US_TERMINATION": "red",
             "UK_TERMINATION": "red",
@@ -8749,6 +8765,301 @@
                         ]
                     }
                 ]
+            },
+            "BR": {
+                countryName: "Brazil",
+                payrollCategories: [
+                    {
+                        title: "Worker Classification",
+                        icon: ICON_MAP["fas fa-id-badge"],
+                        color: ACCENT_COLOR_MAP["BR_CLASSIFICATION"],
+                        type: "worker-classification",
+                        details: [
+                            { label: "CLT Employee (Empregado Celetista)", value: "Governed by Consolidação das Leis do Trabalho (CLT); full statutory benefits apply; employer withholds INSS, IRRF, and deposits FGTS monthly" },
+                            { label: "PJ Contractor (Pessoa Jurídica)", value: "Service provided by a legal entity (company/CNPJ); no CLT entitlements; risk of 'pejotização' — courts may reclassify as CLT if there is subordination, exclusivity, and personal service" },
+                            { label: "MEI (Microempreendedor Individual)", value: "Self-employed micro-entrepreneur; can hire one employee with reduced employer obligations; common for low-cost outsourcing" },
+                            { label: "Estagiário (Intern)", value: "Governed by Lei 11.788/2008; not a CLT employee; no FGTS or 13th salary; entitled to stipend, transport, and 30-day paid vacation if internship exceeds 1 year" },
+                            { label: "Jovem Aprendiz (Young Apprentice)", value: "Ages 14–24; governed by Lei 10.097/2000; reduced FGTS rate (2% vs 8%); 2-year max contract; mandatory quota for companies with 7+ employees" },
+                            { label: "Trabalhador Intermitente (Intermittent Worker)", value: "Added by 2017 Labor Reform (Lei 13.467); paid per hour/day worked; entitled to proportional FGTS, 13th salary, and vacation" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Brazil Worker Classification Framework</strong>",
+                                headers: ["<strong>Category</strong>", "<strong>CLT Coverage</strong>", "<strong>INSS</strong>", "<strong>FGTS</strong>", "<strong>13th Salary</strong>", "<strong>Pejotização Risk</strong>"],
+                                rows: [
+                                    ["CLT Employee", "Full protection", "Employee + Employer", "8% employer deposit", "Yes — mandatory", "N/A"],
+                                    ["PJ Contractor", "None", "Self-paid (INSS autônomo)", "None", "None", "High if subordination present"],
+                                    ["MEI Contractor", "None", "MEI pays own DAS", "None", "None", "Moderate"],
+                                    ["Estagiário", "Lei 11.788 only", "None (no employment)", "None", "None", "Low if structured correctly"],
+                                    ["Jovem Aprendiz", "Partial CLT", "Employee + Employer", "2% (reduced)", "Yes — proportional", "N/A"],
+                                    ["Intermittent Worker", "Full CLT (proportional)", "Employee + Employer", "8% on each payment", "Yes — proportional", "N/A"]
+                                ]
+                            },
+                            {
+                                caption: "<strong>Pejotização Risk Factors</strong>",
+                                headers: ["<strong>Factor</strong>", "<strong>CLT Indicator</strong>", "<strong>Legitimate PJ Indicator</strong>"],
+                                rows: [
+                                    ["Subordination", "Takes orders, subject to disciplinary control", "Autonomous, defines own methods"],
+                                    ["Exclusivity", "Works only for one company", "Multiple clients simultaneously"],
+                                    ["Personal service", "Must perform work personally", "Can substitute or delegate"],
+                                    ["Regularity", "Fixed schedule, continuous relationship", "Project-based or irregular engagement"],
+                                    ["Economic dependence", "Sole or primary income source", "Independent business with own revenue"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Payroll Deductions",
+                        icon: ICON_MAP["fas fa-dollar-sign"],
+                        color: ACCENT_COLOR_MAP["BR_DEDUCTIONS"],
+                        type: "deductions",
+                        details: [
+                            { label: "INSS (Employee)", value: "Progressive contribution: 7.5% to 14% applied per bracket on gross salary up to the INSS ceiling of R$8,157.41 (2025); max contribution ~R$908.86/month" },
+                            { label: "IRRF (Income Tax)", value: "Withholding at source on net salary after INSS deduction; progressive 0%–27.5%; deductions include INSS paid and R$189.59/dependent/month" },
+                            { label: "INSS Employer (RGPS)", value: "20% of total gross payroll (may be reduced under Desoneração da Folha program for eligible sectors)" },
+                            { label: "FGTS (Fundo de Garantia)", value: "8% of gross salary deposited monthly by employer into individual FGTS account at Caixa Econômica Federal; employee does not contribute" },
+                            { label: "RAT/SAT", value: "Employer pays 1%, 2%, or 3% of payroll based on workplace risk level (Risco Ambiental do Trabalho); adjusted by FAP multiplier (0.5–2.0)" },
+                            { label: "Sistema S (Third-Party Contributions)", value: "Employer pays ~3.75%–5.8% of payroll to SESI/SENAI, SESC/SENAC, SEBRAE, INCRA, and others depending on sector/CNAE code" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>INSS Employee Contribution Table 2025 (Progressive)</strong>",
+                                headers: ["<strong>Gross Salary Range</strong>", "<strong>Rate on This Bracket</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["Up to R$1,518.00", "7.5%", "First bracket — applies to wages from R$0 to R$1,518"],
+                                    ["R$1,518.01 to R$2,793.88", "9.0%", "Rate applies only to income within this range"],
+                                    ["R$2,793.89 to R$4,190.83", "12.0%", "Rate applies only to income within this range"],
+                                    ["R$4,190.84 to R$8,157.41", "14.0%", "Rate applies only to income within this range"],
+                                    ["Above R$8,157.41", "Capped", "INSS ceiling — max employee contribution ~R$908.86/month"]
+                                ]
+                            },
+                            {
+                                caption: "<strong>Employer Payroll Burden Summary 2025</strong>",
+                                headers: ["<strong>Contribution</strong>", "<strong>Rate</strong>", "<strong>Base</strong>", "<strong>Paid By</strong>"],
+                                rows: [
+                                    ["INSS (RGPS)", "20%", "Total gross payroll", "Employer"],
+                                    ["FGTS", "8%", "Gross salary per employee", "Employer"],
+                                    ["RAT/SAT (workplace risk)", "1% / 2% / 3%", "Gross payroll (× FAP factor 0.5–2.0)", "Employer"],
+                                    ["Sistema S (avg. industry)", "~3.75%–5.8%", "Gross payroll (varies by CNAE)", "Employer"],
+                                    ["Total typical employer burden", "~33%–37%+", "Above gross salary (excl. FGTS)", "Employer"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Income Tax (IRRF)",
+                        icon: ICON_MAP["fas fa-percentage"],
+                        color: ACCENT_COLOR_MAP["BR_TAX"],
+                        type: "tax-brackets",
+                        details: [
+                            { label: "System", value: "IRRF (Imposto de Renda Retido na Fonte) — withholding income tax applied to monthly employment income after INSS deduction" },
+                            { label: "INSS Deductibility", value: "Employee's INSS contribution is deducted from gross salary before applying IRRF brackets" },
+                            { label: "Dependent Deduction", value: "R$189.59/month per dependent registered on the employee's declaration" },
+                            { label: "Exempt Income (2025)", value: "Monthly base income up to R$2,824.00 is exempt from IRRF withholding" },
+                            { label: "Annual Declaration", value: "Employees file annual IRPF (Imposto de Renda Pessoa Física) declaration by April 30 of the following year via Receita Federal" },
+                            { label: "Proposed Reform", value: "Government has proposed expanding the IRRF exemption threshold to R$5,000/month; as of mid-2025 not yet enacted into law" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>IRRF Monthly Withholding Table 2025 (Employment Income)</strong>",
+                                headers: ["<strong>Monthly Taxable Income*</strong>", "<strong>Rate</strong>", "<strong>Deduction Amount</strong>"],
+                                rows: [
+                                    ["Up to R$2,824.00", "0% (Exempt)", "—"],
+                                    ["R$2,824.01 to R$3,751.05", "7.5%", "R$211.80"],
+                                    ["R$3,751.06 to R$4,664.68", "15.0%", "R$492.75"],
+                                    ["R$4,664.69 to R$5,831.73", "22.5%", "R$842.05"],
+                                    ["Above R$5,831.73", "27.5%", "R$1,133.61"]
+                                ]
+                            },
+                            {
+                                caption: "<strong>IRRF Calculation Example (Gross R$8,000/month, 1 dependent)</strong>",
+                                headers: ["<strong>Step</strong>", "<strong>Amount</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["Gross Salary", "R$8,000.00", "Starting point"],
+                                    ["(-) INSS Employee", "R$908.86", "Capped at INSS ceiling"],
+                                    ["(-) Dependent deduction", "R$189.59", "1 dependent × R$189.59"],
+                                    ["= IRRF Taxable Base", "R$6,901.55", "After all deductions"],
+                                    ["IRRF at 27.5% - R$1,133.61", "R$764.22", "Effective: ~9.6% of gross"],
+                                    ["Net Take-Home (approx.)", "R$6,326.92", "Gross minus INSS and IRRF"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Mandatory Benefits",
+                        icon: ICON_MAP["fas fa-piggy-bank"],
+                        color: ACCENT_COLOR_MAP["BR_BENEFITS"],
+                        type: "benefits",
+                        details: [
+                            { label: "13th Salary (Décimo Terceiro Salário)", value: "Mandatory 1 full month's salary paid in two installments: 1st half by November 30; 2nd half (with IRRF/INSS applied to full amount) by December 20" },
+                            { label: "Annual Vacation (Férias)", value: "30 calendar days after each 12-month anniversary; paid at 100% salary plus mandatory 1/3 vacation bonus (abono de férias); can sell up to 10 days back (abono pecuniário)" },
+                            { label: "FGTS (Severance Fund)", value: "8% of monthly gross deposited by employer into personal FGTS account; employee withdraws upon termination without cause, retirement, home purchase, or serious illness" },
+                            { label: "Vale-Transporte (Transit Voucher)", value: "Employer must provide transit vouchers covering commuting cost; employee pays up to 6% of salary; employer covers the remainder; opt-out allowed if employee uses own transport" },
+                            { label: "Vale-Refeição / Vale-Alimentação", value: "Meal or food card/voucher — required by many collective bargaining agreements (CCTs) and PAT program; tax benefit for employer if provided via PAT-registered operators" },
+                            { label: "Plano de Saúde (Health Plan)", value: "Not legally mandatory by CLT, but required by most CCTs; ANS (National Health Agency) regulates plans; employer often pays full cost or shares with employee" },
+                            { label: "Aviso Prévio (Notice Period)", value: "30 days minimum + 3 days per year of service, up to 90 additional days (max 120 days total); can be worked or paid in lieu (aviso prévio indenizado)" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>13th Salary Calculation & Deadlines</strong>",
+                                headers: ["<strong>Installment</strong>", "<strong>Amount</strong>", "<strong>Deadline</strong>", "<strong>Tax Treatment</strong>"],
+                                rows: [
+                                    ["1st Installment (Adiantamento)", "50% of gross salary (or average of Jan–Jun)", "November 30", "No INSS or IRRF deducted on 1st installment"],
+                                    ["2nd Installment", "Remaining balance (adjusted for hours worked in year)", "December 20", "INSS and IRRF calculated on full 13th salary amount"],
+                                    ["Proportional 13th (pro-rata)", "1/12 per month worked (rounding: ≥15 days = full month)", "Upon termination", "Applies on any separation except termination for cause (justa causa)"]
+                                ]
+                            },
+                            {
+                                caption: "<strong>Vacation (Férias) Rules</strong>",
+                                headers: ["<strong>Provision</strong>", "<strong>Detail</strong>"],
+                                rows: [
+                                    ["Duration", "30 calendar days per 12-month acquisitive period"],
+                                    ["Vacation Bonus (Abono)", "Mandatory 1/3 additional pay on top of vacation salary"],
+                                    ["Payment Timing", "Must be paid at least 2 working days before vacation starts"],
+                                    ["Split Vacation", "Can be split into up to 3 periods (min 14 days for first; others min 5 days each)"],
+                                    ["Abono Pecuniário (sell-back)", "Employee may sell up to 10 days; taxed as normal income"],
+                                    ["Vacation Reduction (absenteism)", "Unused sick days may reduce vacation to 24, 18, or 12 days"],
+                                    ["Férias Vencidas (overdue vacation)", "If employer fails to grant vacation in time: double payment penalty"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Leave Entitlements",
+                        icon: ICON_MAP["fas fa-calendar-alt"],
+                        color: ACCENT_COLOR_MAP["BR_LEAVE"],
+                        type: "leave",
+                        details: [
+                            { label: "Maternity Leave (Licença-Maternidade)", value: "120 days — paid by INSS (employer advances salary, then deducts from INSS contributions); extendable to 180 days via Empresa Cidadã program (Lei 11.770/2008) for companies enrolled" },
+                            { label: "Paternity Leave (Licença-Paternidade)", value: "5 days standard CLT; extendable to 20 days via Empresa Cidadã for enrolled companies; fully paid by employer (no INSS reimbursement)" },
+                            { label: "Sick Leave (Auxílio-Doença)", value: "Days 1–15: paid by employer at 100% of salary; Day 16 onward: INSS pays Auxílio-Doença (~91% of salary contribution basis, capped at INSS ceiling); employment contract suspended" },
+                            { label: "Bereavement (Licença-Nojo)", value: "2 consecutive days for death of spouse, child, parent, or sibling" },
+                            { label: "Marriage (Licença-Gala)", value: "3 consecutive days from date of marriage" },
+                            { label: "Jury / Electoral Duty", value: "Full day off for election voting; time off for jury service as required by court" },
+                            { label: "Accident at Work (Acidente de Trabalho)", value: "First 15 days: employer pays; Day 16+: INSS pays SAT benefit; FGTS continues to accrue during entire period; employment protected for 12 months post-return" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Brazil Leave Entitlements Summary</strong>",
+                                headers: ["<strong>Leave Type</strong>", "<strong>Duration</strong>", "<strong>Who Pays</strong>", "<strong>Benefit Rate</strong>", "<strong>CLT Article / Law</strong>"],
+                                rows: [
+                                    ["Maternity Leave", "120 days (180 via Empresa Cidadã)", "INSS (employer advances)", "100% of salary", "CLT Art. 392; Lei 11.770/2008"],
+                                    ["Paternity Leave", "5 days (20 via Empresa Cidadã)", "Employer", "100% of salary", "ADCT Art. 10; Lei 11.770/2008"],
+                                    ["Sick Leave — Days 1–15", "Up to 15 days", "Employer", "100% of salary", "CLT Art. 476"],
+                                    ["Sick Leave — Day 16+", "While incapacitated", "INSS (Auxílio-Doença)", "~91% of contribution basis", "Lei 8.213/1991"],
+                                    ["Bereavement", "2 days", "Employer", "100% of salary", "CLT Art. 473"],
+                                    ["Marriage", "3 days", "Employer", "100% of salary", "CLT Art. 473"],
+                                    ["Work Accident (post-return)", "12-month job protection", "INSS pays benefit", "~91% of contribution basis", "Lei 8.213 Art. 118"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "eSocial & Key Forms",
+                        icon: ICON_MAP["fas fa-clipboard-list"],
+                        color: ACCENT_COLOR_MAP["BR_FORMS"],
+                        type: "forms",
+                        details: [
+                            { label: "eSocial", value: "Brazil's unified digital payroll reporting platform (since 2018–2020); consolidates SEFIP/GFIP, CAGED, RAIS, and other obligations into a single real-time digital feed to Receita Federal, MTE, INSS, and Caixa" },
+                            { label: "DCTFWeb", value: "Declaração de Débitos e Créditos Tributários Federais Web — replaces paper DCTF; automatically populated from eSocial and EFD-Reinf; declares IRRF withheld and INSS owed monthly" },
+                            { label: "EFD-Reinf", value: "Electronic Fiscal Obligations Record — complements eSocial for services and withholding on non-payroll items; quarterly for small companies, monthly for large" },
+                            { label: "DIRF (Declaração do IR Retido na Fonte)", value: "Annual declaration of all IRRF withheld; due by last business day of February; filed with Receita Federal; includes W-2 equivalent (Informe de Rendimentos) distributed to employees by Feb 28" },
+                            { label: "RAIS (Relação Anual de Informações Sociais)", value: "Annual report to Ministry of Labor; due January–March; reports all employees, wages, and hours for statistical purposes; mandatory even for companies with zero employees (RAIS Negativa)" },
+                            { label: "CAGED (now via eSocial)", value: "Monthly new hire and termination registry; now fully integrated into eSocial S-2200/S-2299 events; separate CAGED file still required for some legacy integrations" },
+                            { label: "Informe de Rendimentos", value: "Annual income statement provided to each employee by February 28; used to file individual IRPF declaration; equivalent to W-2 in the US" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Brazil Payroll Reporting Calendar 2025</strong>",
+                                headers: ["<strong>Obligation</strong>", "<strong>System</strong>", "<strong>Frequency</strong>", "<strong>Deadline</strong>"],
+                                rows: [
+                                    ["Payroll events (hire, salary, termination)", "eSocial", "Real-time / per event", "Before the event takes effect (S-2200, S-2299, S-1200)"],
+                                    ["Monthly payroll totals (folha)", "eSocial S-1200", "Monthly", "By day 7 of following month (large cos.); day 7 or 20 (others)"],
+                                    ["IRRF + INSS payment declaration", "DCTFWeb", "Monthly", "15th of following month"],
+                                    ["FGTS deposit", "Caixa Econômica Federal (via SEFIP/eSocial)", "Monthly", "By 7th of following month"],
+                                    ["13th Salary — 1st installment", "Payroll + eSocial S-1200", "Annual", "November 30"],
+                                    ["13th Salary — 2nd installment", "Payroll + eSocial S-1200", "Annual", "December 20"],
+                                    ["DIRF (IRRF annual declaration)", "Receita Federal", "Annual", "Last business day of February"],
+                                    ["RAIS (labor statistics)", "MTE Portal", "Annual", "January–March (window varies by year)"],
+                                    ["Informe de Rendimentos (employee W-2 equiv.)", "Employer provides directly", "Annual", "February 28"]
+                                ]
+                            },
+                            {
+                                caption: "<strong>Key eSocial Event Codes</strong>",
+                                headers: ["<strong>Event Code</strong>", "<strong>Description</strong>", "<strong>Trigger</strong>"],
+                                rows: [
+                                    ["S-2200", "Employee Admission (Cadastramento Inicial)", "New hire or re-hire"],
+                                    ["S-2205", "Employee Data Update", "Change in personal data"],
+                                    ["S-2230", "Temporary Leave (Afastamento Temporário)", "Sick leave, maternity, accident"],
+                                    ["S-2299", "Termination (Desligamento)", "Any separation from employment"],
+                                    ["S-1200", "Payroll Information (Remuneração)", "Each payroll run"],
+                                    ["S-1210", "Payments to employees", "Settlement of wages, 13th, vacation"],
+                                    ["S-2400", "Benefit Registration (INSS)", "When employee starts INSS benefit"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Equity Compensation",
+                        icon: ICON_MAP["fas fa-chart-pie"],
+                        color: ACCENT_COLOR_MAP["BR_EQUITY"],
+                        type: "equity-compensation",
+                        details: [
+                            { label: "Overview", value: "Brazil's tax treatment of stock-based compensation depends on whether the plan is structured as mercantile (commercial) or labor income — a key distinction that drives INSS and IRRF exposure" }
+                        ],
+                        accordions: [
+                            {
+                                id: "br-stock-options",
+                                title: "Stock Options (Opções de Compra de Ações)",
+                                icon: "fas fa-coins",
+                                details: [
+                                    { label: "📋 Legal Framework", value: "No specific stock option law in Brazil; governed by Labor Court precedent (TST) and Receita Federal rulings (Solução de Consulta)" },
+                                    { label: "💼 Mercantile Nature Doctrine", value: "If the plan has real financial risk (employee pays strike price, bears market risk), courts may classify as mercantile — not employment income; no INSS; IRRF only at capital gains rate (15–22.5%) on sale" },
+                                    { label: "💼 Labor Income Risk", value: "If plan has no real risk (discounted heavily, automatic vest with no contribution), courts may classify as salary supplement — INSS + IRRF as employment income at grant/exercise" },
+                                    { label: "💰 Tax on Exercise", value: "If mercantile: no income tax at exercise; CGT applies at sale (15% up to R$5M gain; 17.5% to R$10M; 20% to R$30M; 22.5% above R$30M)" },
+                                    { label: "📝 Reporting", value: "Annual IRPF declaration; eSocial S-1200 if classified as salary; DIRF if IRRF withheld" }
+                                ],
+                                tables: [
+                                    {
+                                        caption: "<strong>Brazil Stock Option Classification Test</strong>",
+                                        headers: ["<strong>Factor</strong>", "<strong>Mercantile (no INSS/labor IRRF)</strong>", "<strong>Labor Income (INSS + IRRF applies)</strong>"],
+                                        rows: [
+                                            ["Strike price", "At or near fair market value", "Below market / heavily discounted"],
+                                            ["Employee financial risk", "Yes — pays purchase price, bears loss risk", "No — guaranteed gain or zero cost"],
+                                            ["Vesting condition", "Market/performance based", "Simply remaining employed (time-vesting only)"],
+                                            ["Transferability", "Non-transferable (typical)", "Non-transferable"],
+                                            ["TST precedent", "Favor mercantile if risk present", "Labor if purely tenure-based reward"]
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: "br-rsu",
+                                title: "RSUs / Restricted Stock",
+                                icon: "fas fa-chart-line",
+                                details: [
+                                    { label: "📋 Tax Treatment", value: "RSUs and restricted stock grants are generally treated as employment income (salary) upon vesting in Brazil — higher risk of INSS + IRRF than stock options" },
+                                    { label: "💰 Taxable Event", value: "Vesting date — FMV of shares on vest date is treated as compensation; INSS (up to ceiling) and IRRF at progressive rates apply" },
+                                    { label: "📊 Employer Obligation", value: "Employer must include RSU vesting value in the monthly payroll base (S-1200 eSocial event); withhold INSS employee portion and IRRF; pay employer INSS 20% + FGTS 8% on RSU income" },
+                                    { label: "📈 Sale of Shares", value: "Gains above cost basis (FMV at vest) taxed as capital gains at 15%–22.5%; employee files via Ganhos de Capital program (GCAP) in annual IRPF" },
+                                    { label: "⚠️ CARF Risk", value: "Brazil's tax court (CARF) has challenged many RSU plans — employer must maintain robust documentation showing mercantile characteristics to avoid labor reclassification" }
+                                ],
+                                tables: [
+                                    {
+                                        caption: "<strong>Brazil RSU Tax Flow</strong>",
+                                        headers: ["<strong>Event</strong>", "<strong>Taxable?</strong>", "<strong>Rate</strong>", "<strong>Who Withholds</strong>"],
+                                        rows: [
+                                            ["Grant date", "No", "N/A", "N/A"],
+                                            ["Vesting date", "Yes (as employment income)", "INSS progressive + IRRF 0%–27.5%", "Employer (via payroll)"],
+                                            ["Sale — gain above vest FMV", "Yes (capital gain)", "15%–22.5% CGT", "Employee self-reports (GCAP/IRPF)"],
+                                            ["Dividends from shares", "Yes (investment income)", "Exempt if from Brazilian corporate profits", "N/A"]
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         };
 
@@ -8987,6 +9298,7 @@
         const COUNTRY_LIST = [
             { code: 'CA', name: 'Canada',         flag: '🇨🇦', region: 'americas' },
             { code: 'US', name: 'United States',  flag: '🇺🇸', region: 'americas' },
+            { code: 'BR', name: 'Brazil',         flag: '🇧🇷', region: 'americas' },
             { code: 'UK', name: 'United Kingdom', flag: '🇬🇧', region: 'europe' },
             { code: 'DE', name: 'Germany',        flag: '🇩🇪', region: 'europe' },
             { code: 'NL', name: 'Netherlands',    flag: '🇳🇱', region: 'europe' },
@@ -10307,14 +10619,18 @@
             const country = document.getElementById('country-view');
             const calc = document.getElementById('calc-view');
             const token = document.getElementById('token-view');
+            const usStates = document.getElementById('us-states-view');
             document.getElementById('view-tab-country').classList.toggle('active', view === 'country');
             document.getElementById('view-tab-calc').classList.toggle('active', view === 'calc');
             document.getElementById('view-tab-token').classList.toggle('active', view === 'token');
+            document.getElementById('view-tab-us-states').classList.toggle('active', view === 'us-states');
             country.style.display = view === 'country' ? 'block' : 'none';
             calc.style.display = view === 'calc' ? 'block' : 'none';
             token.style.display = view === 'token' ? 'block' : 'none';
+            usStates.style.display = view === 'us-states' ? 'block' : 'none';
             if (view === 'token') renderTokenPage();
             if (view === 'calc') renderCalcPage();
+            if (view === 'us-states') renderStatesPage();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -10604,6 +10920,944 @@
                 </div>
             </div>`;
             renderTokenCards();
+        }
+
+        // ─── US STATES DATA ───────────────────────────────────────────────────────
+        const stateData = {
+            "NY": {
+                stateName: "New York", stateFlag: "🗽",
+                payrollCategories: [
+                    {
+                        title: "State Income Tax", icon: "fas fa-percentage", color: "red", type: "state-income-tax",
+                        details: [
+                            { label: "Tax System", value: "Progressive income tax with 9 brackets" },
+                            { label: "Rate Range", value: "4% to 10.9% (highest bracket on income over $25M)" },
+                            { label: "Standard Deduction (2025)", value: "$8,000 single / $16,050 married jointly" },
+                            { label: "NYC Residents", value: "Additional NYC income tax: 3.078% to 3.876%" },
+                            { label: "Yonkers Residents", value: "16.75% surcharge on NY State tax liability" },
+                            { label: "Yonkers Non-Residents", value: "0.50% of wages earned in Yonkers" },
+                            { label: "Withholding Method", value: "Wage bracket or percentage method tables; employee files IT-2104" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>NY State Income Tax Brackets 2025 — Single Filers</strong>",
+                                headers: ["<strong>Taxable Income</strong>", "<strong>Rate</strong>", "<strong>Tax on Lower Bound</strong>"],
+                                rows: [
+                                    ["$0 – $17,150", "4.00%", "$0"],
+                                    ["$17,151 – $23,600", "4.50%", "$686"],
+                                    ["$23,601 – $27,900", "5.25%", "$976"],
+                                    ["$27,901 – $161,550", "5.85%", "$1,202"],
+                                    ["$161,551 – $323,200", "6.25%", "$9,021"],
+                                    ["$323,201 – $2,155,350", "6.85%", "$19,124"],
+                                    ["$2,155,351 – $25,000,000", "9.65%", "$144,626"],
+                                    ["Over $25,000,000", "10.90%", "$2,349,736"]
+                                ]
+                            },
+                            {
+                                caption: "<strong>NYC & Yonkers Local Income Tax 2025</strong>",
+                                headers: ["<strong>Jurisdiction</strong>", "<strong>Rate / Method</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["NYC — $0 – $12,000", "3.078%", "Residents only"],
+                                    ["NYC — $12,001 – $25,000", "3.762%", "Residents only"],
+                                    ["NYC — $25,001 – $50,000", "3.819%", "Residents only"],
+                                    ["NYC — $50,001+", "3.876%", "Residents only"],
+                                    ["Yonkers Resident", "16.75% of NY State tax", "Surcharge on NY liability"],
+                                    ["Yonkers Non-Resident", "0.50% of wages", "Work in Yonkers, live elsewhere"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "State Payroll Taxes", icon: "fas fa-dollar-sign", color: "indigo", type: "state-payroll-taxes",
+                        details: [
+                            { label: "State Unemployment (SUI)", value: "Employer-paid; new employer rate 4.1%; experience-rated 2.1%–9.9% on first $12,800 per employee" },
+                            { label: "Re-employment Services Fund (RSF)", value: "0.075% employer on $12,800 wage base" },
+                            { label: "State Disability Insurance (SDI)", value: "Employee: $0.60/week maximum; employer must ensure coverage via private plan or state fund" },
+                            { label: "Paid Family Leave (PFL)", value: "0.388% employee on first $89,343.16; max $345.85/yr; funds 67% of AWW for up to 12 weeks" },
+                            { label: "MCTMT (NYC metro)", value: "Employer: 0.34% on wages for NYC metro employees (if payroll >$312,500/quarter)" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>New York Payroll Tax Rates 2025</strong>",
+                                headers: ["<strong>Tax</strong>", "<strong>Employee Rate</strong>", "<strong>Employer Rate</strong>", "<strong>Wage Base</strong>", "<strong>Annual Max (EE)</strong>"],
+                                rows: [
+                                    ["SUI", "0%", "4.10% new / 2.1%–9.9% exp.", "$12,800", "N/A"],
+                                    ["Re-employment Services Fund", "0%", "0.075%", "$12,800", "N/A"],
+                                    ["SDI", "Max $0.60/week", "Varies (plan cost)", "Statutory cap", "$31.20/yr"],
+                                    ["Paid Family Leave (PFL)", "0.388%", "0%", "$89,343.16", "$345.85"],
+                                    ["MCTMT (NYC metro employers)", "0%", "0.34%", "All wages (threshold >$312.5K/qtr)", "None"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Paid Leave Programs", icon: "fas fa-calendar-alt", color: "teal", type: "paid-leave",
+                        details: [
+                            { label: "NY Paid Family Leave (PFL)", value: "67% of employee's AWW (max $1,151.16/week) for up to 12 weeks; covers bonding, family care, military" },
+                            { label: "NY Disability Benefits (DBL)", value: "50% of AWW, max $170/week for up to 26 weeks; funded at employee's $0.60/week cap" },
+                            { label: "NY Paid Safe/Sick Leave", value: "100+ employees: 56 hrs paid; 5–99 employees: 40 hrs paid; <5 employees: 40 hrs unpaid (if ≥$1M net income: paid)" },
+                            { label: "NY WARN Act", value: "90-day advance notice for mass layoffs or plant closings (100+ employees) — stricter than federal 60-day requirement" },
+                            { label: "Federal FMLA", value: "12 weeks unpaid, job-protected; applies to employers with 50+ employees" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>NY Leave Program Comparison</strong>",
+                                headers: ["<strong>Program</strong>", "<strong>Duration</strong>", "<strong>Pay Rate</strong>", "<strong>Funded By</strong>", "<strong>Qualifying Events</strong>"],
+                                rows: [
+                                    ["Paid Family Leave (PFL)", "Up to 12 weeks", "67% AWW (max $1,151.16/wk)", "Employee (0.388%)", "Bonding, family care, military"],
+                                    ["Disability Benefits (DBL)", "Up to 26 weeks", "50% AWW (max $170/wk)", "Employee ($0.60/wk)", "Own illness/injury"],
+                                    ["NY Sick Leave", "40–56 hrs/yr", "Full pay", "Employer", "Illness, preventive care, domestic violence"],
+                                    ["Federal FMLA", "Up to 12 weeks", "Unpaid", "N/A", "Serious health condition, bonding, military"],
+                                    ["NY WARN Act", "90-day notice", "N/A (notice only)", "N/A", "Mass layoffs, plant closing, relocation"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Employment Standards", icon: "fas fa-clipboard-list", color: "green", type: "employment-standards",
+                        details: [
+                            { label: "Minimum Wage (2025)", value: "NYC / Long Island / Westchester: $17.00/hr | Rest of state: $15.50/hr" },
+                            { label: "Tipped Employees", value: "NYC: $14.45/hr cash wage (tip credit $2.55) | Upstate: $12.90/hr cash wage" },
+                            { label: "Pay Frequency", value: "Manual workers: weekly | Clerical/other: weekly or bi-weekly | Executive/management: monthly with Department approval" },
+                            { label: "Final Pay", value: "Next regular pay period; commissions due upon termination" },
+                            { label: "Overtime", value: "1.5× for hours over 40/week (FLSA applies; no daily overtime in NY)" },
+                            { label: "Wage Theft Prevention Act", value: "Written wage notice at hire and on each pay stub; employer must maintain records 6 years" },
+                            { label: "New Hire Reporting", value: "Within 20 days of hire to NYS New Hire Reporting Center" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>NY Minimum Wage by Region 2025</strong>",
+                                headers: ["<strong>Region</strong>", "<strong>2025 Rate</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["NYC (5 boroughs)", "$17.00/hr", "Includes fast food workers"],
+                                    ["Long Island & Westchester County", "$17.00/hr", "Same as NYC since 2023"],
+                                    ["Rest of New York State", "$15.50/hr", "Updated annually per statute"],
+                                    ["Tipped workers (NYC)", "$14.45/hr cash + tips", "Max tip credit: $2.55/hr"],
+                                    ["Home care aides (NYC)", "$19.10/hr", "Separate home care wage order"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Key State Forms", icon: "fas fa-file-alt", color: "purple", type: "state-forms",
+                        details: [
+                            { label: "IT-2104", value: "Employee's Withholding Allowance Certificate — NY-specific; replaces W-4 for state withholding purposes" },
+                            { label: "NYS-45", value: "Quarterly Combined Withholding, Wage Reporting & UI Return — due 30 days after quarter end" },
+                            { label: "NYS-1", value: "Return of Tax Withheld — semi-weekly or monthly deposit coupon" },
+                            { label: "PFL-1 / PFL-2", value: "Claim for Paid Family Leave Benefits — employee and employer portions submitted to insurance carrier" },
+                            { label: "DB-120.1", value: "Employer's Proof of Coverage for Disability Benefits — must be posted at workplace" },
+                            { label: "LS 54 (Pay Notice)", value: "Wage Rate Notice — required at hire and upon any rate change per Wage Theft Prevention Act" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>NY Payroll Filing Calendar 2025</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>"],
+                                rows: [
+                                    ["NYS-45", "Quarterly withholding + UI return", "Quarterly", "Apr 30, Jul 31, Oct 31, Jan 31"],
+                                    ["NYS-1", "Withholding deposit coupon", "Semi-weekly or monthly", "3 days after payroll (semi-wkly) or 15th of following month"],
+                                    ["W-2 / IT-2102", "Annual wage statement", "Annual", "January 31"],
+                                    ["LS 54 / Pay Notice", "Wage rate notification", "At hire + any change", "On or before first day of work"]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "CA": {
+                stateName: "California", stateFlag: "🐻",
+                payrollCategories: [
+                    {
+                        title: "State Income Tax", icon: "fas fa-percentage", color: "red", type: "state-income-tax",
+                        details: [
+                            { label: "Tax System", value: "Progressive income tax with 9 brackets; highest marginal rate in the US" },
+                            { label: "Rate Range", value: "1% to 13.3% (top bracket includes 1% mental health services surtax on income over $1M)" },
+                            { label: "Standard Deduction (2025)", value: "~$5,202 single / ~$10,404 married jointly" },
+                            { label: "Personal Exemption Credit", value: "~$144 single / ~$288 married" },
+                            { label: "Withholding", value: "Employee files DE-4 (or W-4 if no DE-4); withholding tables published annually by EDD" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>CA State Income Tax Brackets 2025 — Single Filers</strong>",
+                                headers: ["<strong>Taxable Income</strong>", "<strong>Rate</strong>"],
+                                rows: [
+                                    ["$0 – $10,412", "1.00%"],
+                                    ["$10,413 – $24,684", "2.00%"],
+                                    ["$24,685 – $38,959", "4.00%"],
+                                    ["$38,960 – $54,081", "6.00%"],
+                                    ["$54,082 – $68,350", "8.00%"],
+                                    ["$68,351 – $349,137", "9.30%"],
+                                    ["$349,138 – $418,961", "10.30%"],
+                                    ["$418,962 – $698,274", "11.30%"],
+                                    ["$698,275 – $1,000,000", "12.30%"],
+                                    ["Over $1,000,000", "13.30% (incl. 1% mental health surtax)"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "State Payroll Taxes", icon: "fas fa-dollar-sign", color: "indigo", type: "state-payroll-taxes",
+                        details: [
+                            { label: "SDI (Disability + PFL)", value: "Employee: 1.1% — unlimited wage base (no cap since Jan 2024); funds both short-term disability and paid family leave" },
+                            { label: "SUI (Unemployment)", value: "Employer only; new employer 3.4% on $7,000 wage base; experience-rated 1.5%–6.2%" },
+                            { label: "Employment Training Tax (ETT)", value: "Employer only: 0.1% on first $7,000; funds workforce development programs" },
+                            { label: "No Employee UI Contribution", value: "Only SDI is deducted from employee paychecks; SUI and ETT are employer-only costs" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>California Payroll Tax Summary 2025</strong>",
+                                headers: ["<strong>Tax</strong>", "<strong>Employee Rate</strong>", "<strong>Employer Rate</strong>", "<strong>Wage Base</strong>", "<strong>Annual Max (EE)</strong>"],
+                                rows: [
+                                    ["SDI (incl. PFL funding)", "1.10%", "0%", "No cap (unlimited)", "No cap"],
+                                    ["SUI (Unemployment)", "0%", "3.40% new / 1.5%–6.2% exp.", "$7,000", "N/A"],
+                                    ["Employment Training Tax (ETT)", "0%", "0.10%", "$7,000", "N/A"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Paid Leave Programs", icon: "fas fa-calendar-alt", color: "teal", type: "paid-leave",
+                        details: [
+                            { label: "CA Paid Family Leave (PFL)", value: "60–70% of wages (70% for lower-income); max ~$1,620/week (2025); up to 8 weeks for bonding, family care, military" },
+                            { label: "CA State Disability (SDI)", value: "60–70% of wages for own illness/injury/pregnancy; up to 52 weeks; same benefit calculation as PFL" },
+                            { label: "CA Paid Sick Leave (SB 616 — eff. 2024)", value: "5 days (40 hours) per year; may be frontloaded or accrued at 1 hr per 30 hrs worked" },
+                            { label: "CFRA (CA Family Rights Act)", value: "12 weeks unpaid, job-protected; covers employers with 5+ employees (vs. FMLA threshold of 50+)" },
+                            { label: "CA WARN Act", value: "60-day advance notice for layoffs/closings affecting 50+ employees at one location" },
+                            { label: "Bereavement Leave (AB 1949)", value: "5 days for death of qualifying family member; effective 2023; employers with 5+ employees" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>California Leave Programs Summary</strong>",
+                                headers: ["<strong>Program</strong>", "<strong>Duration</strong>", "<strong>Pay Rate</strong>", "<strong>Employer Size</strong>"],
+                                rows: [
+                                    ["Paid Family Leave (PFL)", "Up to 8 weeks", "60–70% AWW (max ~$1,620/wk)", "All employers"],
+                                    ["State Disability (SDI)", "Up to 52 weeks", "60–70% AWW", "All employers"],
+                                    ["Paid Sick Leave", "40 hrs (5 days)/yr", "Regular rate", "1+ employees"],
+                                    ["CFRA Leave (unpaid)", "12 weeks", "Unpaid; may run concurrent w/ SDI/PFL", "5+ employees"],
+                                    ["Bereavement Leave", "5 days", "Full pay (if available)", "5+ employees"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Worker Classification (AB5)", icon: "fas fa-id-badge", color: "orange", type: "worker-classification",
+                        details: [
+                            { label: "ABC Test (AB5)", value: "California applies a strict 3-part ABC test for most industries to determine employee vs. contractor status" },
+                            { label: "Prong A", value: "Worker is free from control and direction of hiring entity in connection with the work (in contract and in fact)" },
+                            { label: "Prong B", value: "Worker performs work outside the usual course of hiring entity's business — key and unique differentiator vs. IRS test" },
+                            { label: "Prong C", value: "Worker is customarily engaged in an independently established trade, occupation, or business" },
+                            { label: "Exemptions", value: "Many professions exempt (licensed professionals, certain gig workers under Prop 22, etc.); exempt workers use Borello multi-factor test" },
+                            { label: "Misclassification Penalties", value: "$5,000–$15,000 per violation; $10,000–$25,000 for willful/pattern violations; plus back taxes, benefits, and waiting time penalties" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>CA ABC Test vs. IRS Common Law Test</strong>",
+                                headers: ["<strong>Test</strong>", "<strong>Standard</strong>", "<strong>Key Factor</strong>", "<strong>Burden</strong>"],
+                                rows: [
+                                    ["CA ABC Test (AB5)", "All 3 prongs must be met for contractor", "Prong B: work outside normal business", "Employer must prove contractor status"],
+                                    ["IRS Common Law", "Behavioral, financial, relationship factors", "Degree of behavioral control", "Case-by-case analysis"],
+                                    ["FLSA Economic Reality", "Economic dependence on employer", "Integration and permanency", "Totality of circumstances"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Employment Standards", icon: "fas fa-clipboard-list", color: "green", type: "employment-standards",
+                        details: [
+                            { label: "Minimum Wage (2025)", value: "$16.50/hr statewide; fast food chains: $20/hr (AB 1228); healthcare workers phasing to $25/hr" },
+                            { label: "Pay Frequency", value: "Semi-monthly minimum; weekly or bi-weekly also permitted" },
+                            { label: "Final Pay — Termination", value: "Immediately at time of discharge" },
+                            { label: "Final Pay — Resignation", value: "If 72+ hours notice given: last day of work; if <72 hours notice: within 72 hours" },
+                            { label: "Overtime — Daily", value: "1.5× after 8 hrs/day; 2.0× after 12 hrs/day — daily overtime is unique to California" },
+                            { label: "Overtime — Weekly", value: "1.5× after 40 hrs/week; 1.5× for first 8 hrs on 7th consecutive day; 2.0× over 8 hrs on 7th day" },
+                            { label: "Meal & Rest Breaks", value: "30-min unpaid meal after 5 hrs work; 10-min paid rest per 4 hrs (or major fraction thereof)" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>California Overtime Rules (Daily & Weekly)</strong>",
+                                headers: ["<strong>Trigger</strong>", "<strong>Rate</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["Over 8 hrs/day", "1.5×", "Daily OT — unique to CA; no equivalent in most states"],
+                                    ["Over 12 hrs/day", "2.0×", "Double time for extended days"],
+                                    ["Over 40 hrs/week", "1.5×", "Standard FLSA weekly OT"],
+                                    ["7th consecutive workday (first 8 hrs)", "1.5×", "Workweek rule"],
+                                    ["7th consecutive workday (over 8 hrs)", "2.0×", "Double time on 7th day over 8 hrs"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Key State Forms", icon: "fas fa-file-alt", color: "purple", type: "state-forms",
+                        details: [
+                            { label: "DE-4", value: "Employee's Withholding Allowance Certificate — CA-specific; must be used instead of W-4 for state withholding" },
+                            { label: "DE-9 / DE-9C", value: "Quarterly Contribution Return + Report of Wages — combined UI/SDI/ETT/PIT filing; due last day of month after quarter" },
+                            { label: "DE-34", value: "Report of New Employee(s) — must report within 20 days of start date to CA EDD" },
+                            { label: "DE 2501 / DE 2501FP", value: "SDI Claim / PFL Claim — filed by employee directly with EDD; employer provides DE-2501C (physician's certification)" },
+                            { label: "Wage Theft Notice (WTPA)", value: "Multi-language hire notice required per Labor Code §2810.5; employer must provide on or before first day" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>CA EDD Filing Calendar 2025</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>"],
+                                rows: [
+                                    ["DE-9 / DE-9C", "Quarterly wages + contributions", "Quarterly", "Apr 30, Jul 31, Oct 31, Jan 31"],
+                                    ["DE-34", "New employee reporting", "Per hire", "Within 20 days of hire"],
+                                    ["EDD Deposit (EFT)", "PIT, SDI, UI, ETT payments", "Semi-weekly or monthly", "Per federal deposit schedule"],
+                                    ["W-2 / EDD Copy 1", "Annual wage statements", "Annual", "January 31"]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "IA": {
+                stateName: "Iowa", stateFlag: "🌽",
+                payrollCategories: [
+                    {
+                        title: "State Income Tax", icon: "fas fa-percentage", color: "red", type: "state-income-tax",
+                        details: [
+                            { label: "Tax System (2025)", value: "Flat 3.8% rate — Iowa completed major tax reform; eliminated all graduated brackets effective January 1, 2025" },
+                            { label: "Future Rate Reductions", value: "3.65% in 2026 → 3.5% in 2027 → targeting full phaseout by 2033 (subject to revenue triggers)" },
+                            { label: "Standard Deduction (2025)", value: "$2,210 single / $5,450 married jointly" },
+                            { label: "Retirement Income Exemption", value: "All retirement income (Social Security, pensions, 401k distributions) exempt from Iowa income tax for taxpayers 55+" },
+                            { label: "No Local Income Tax", value: "Iowa has no local or municipal income tax — unlike PA, NY, or OH" },
+                            { label: "Withholding", value: "Employee files IA W-4; employer withholds at 3.8% flat rate" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Iowa Income Tax Rate Roadmap</strong>",
+                                headers: ["<strong>Year</strong>", "<strong>Rate</strong>", "<strong>Structure</strong>"],
+                                rows: [
+                                    ["2023", "6.00% (top)", "Multiple graduated brackets"],
+                                    ["2024", "5.70% (top)", "Multiple graduated brackets (transitional)"],
+                                    ["2025", "3.80%", "Flat rate (post-reform)"],
+                                    ["2026", "3.65%", "Flat rate (planned)"],
+                                    ["2027", "3.50%", "Flat rate (planned)"],
+                                    ["2033+", "0.00% (target)", "Full elimination (subject to revenue triggers)"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "State Payroll Taxes", icon: "fas fa-dollar-sign", color: "indigo", type: "state-payroll-taxes",
+                        details: [
+                            { label: "SUI (Unemployment)", value: "Employer-paid; new employer 1.0% (construction: 7.5%) on $38,200 wage base (2025); experience-rated 0%–7.0%" },
+                            { label: "No State SDI", value: "Iowa does not have a state-sponsored short-term disability insurance program" },
+                            { label: "No State PFL", value: "Iowa does not have a state paid family and medical leave program; federal FMLA applies (unpaid; 50+ employees)" },
+                            { label: "Workers Compensation", value: "Mandatory; governed by Iowa Division of Workers' Compensation; employer must carry coverage or be self-insured" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Iowa Payroll Tax Summary 2025</strong>",
+                                headers: ["<strong>Tax</strong>", "<strong>Employee Rate</strong>", "<strong>Employer Rate</strong>", "<strong>Wage Base</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["State Income Tax (WH)", "3.80% flat", "N/A (withheld)", "All wages", "Employer remits withheld amount"],
+                                    ["SUI (Unemployment)", "0%", "1.0% new / 0%–7.0% exp.", "$38,200", "Construction new employer: 7.5%"],
+                                    ["SDI / PFL", "0%", "0%", "N/A", "No state program — no deduction"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Employment Standards", icon: "fas fa-clipboard-list", color: "green", type: "employment-standards",
+                        details: [
+                            { label: "Minimum Wage", value: "$7.25/hr — Iowa preempts local minimum wage ordinances; state has not exceeded federal minimum wage" },
+                            { label: "At-Will Employment", value: "Iowa is a strict at-will employment state; termination for any lawful reason without prior notice" },
+                            { label: "Right to Work", value: "Iowa is a Right to Work state — employees cannot be required to join a union or pay union dues" },
+                            { label: "Pay Frequency", value: "At least monthly for most workers; more frequent is permitted" },
+                            { label: "Overtime", value: "Federal FLSA applies — 1.5× for hours over 40/week; Iowa has no daily overtime requirement" },
+                            { label: "Final Pay", value: "Next regular payday; if no established payday: within 30 days of separation" },
+                            { label: "New Hire Reporting", value: "Within 15 days of hire to Iowa New Employee Registry (IowaWorkforceDevelopment.gov)" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Iowa Employment Quick Reference</strong>",
+                                headers: ["<strong>Provision</strong>", "<strong>Requirement</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["Minimum Wage", "$7.25/hr", "Preempts local increases; no state increase currently planned"],
+                                    ["Overtime Threshold", "40 hrs/week", "Federal FLSA; no daily OT rule"],
+                                    ["Pay Frequency", "Monthly minimum", "More frequent always permitted"],
+                                    ["Final Pay", "Next regular payday", "Max 30 days after termination"],
+                                    ["New Hire Reporting", "Within 15 days", "Iowa New Employee Registry"],
+                                    ["Union / Right to Work", "RTW state", "Employees cannot be compelled to join union"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Key State Forms", icon: "fas fa-file-alt", color: "purple", type: "state-forms",
+                        details: [
+                            { label: "IA W-4", value: "Iowa Employee's Withholding Certificate — Iowa-specific; determines 3.8% flat-rate withholding amount" },
+                            { label: "Iowa Withholding Tax Return", value: "Filed monthly/semi-monthly/quarterly with Iowa DOR depending on withholding amount; remit withheld state income tax" },
+                            { label: "Iowa W-2", value: "Annual wage and tax statement; must include Iowa wages and state income tax withheld; due January 31 to Iowa DOR" },
+                            { label: "Iowa UI-3", value: "Employer's Quarterly Contribution and Payroll Report — SUI wage reporting and contribution payment to Iowa Workforce Development" },
+                            { label: "Iowa New Employee Report", value: "Required within 15 days of hire; submit online or mail; includes employee name, SSN, address, and hire date" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Iowa Payroll Filing Calendar 2025</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>"],
+                                rows: [
+                                    ["Iowa WH Return", "State withholding deposits", "Monthly / quarterly", "15th of following month (monthly schedule)"],
+                                    ["Iowa W-2", "Annual wage reporting", "Annual", "January 31"],
+                                    ["Iowa UI-3", "UI contributions + wage report", "Quarterly", "Apr 30, Jul 31, Oct 31, Jan 31"],
+                                    ["Iowa New Employee Report", "New hire reporting", "Per hire", "Within 15 days of hire"]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "PA": {
+                stateName: "Pennsylvania", stateFlag: "🔔",
+                payrollCategories: [
+                    {
+                        title: "State Income Tax", icon: "fas fa-percentage", color: "red", type: "state-income-tax",
+                        details: [
+                            { label: "Tax System", value: "Flat 3.07% rate on all taxable income — one of the lowest and simplest state income tax structures in the US" },
+                            { label: "No Standard Deduction or Exemptions", value: "PA personal income tax has no standard deduction or personal exemptions; all taxable income is taxed at 3.07%" },
+                            { label: "Employee Withholding", value: "Employers withhold 3.07% from all Pennsylvania wages; no allowance adjustments for state purposes" },
+                            { label: "Reciprocal Agreements", value: "PA has reciprocity with NJ, MD, OH, VA, WV, IN, MI, KY — residents of those states working in PA pay only home-state tax, not PA tax" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Pennsylvania Income Tax at a Glance</strong>",
+                                headers: ["<strong>Item</strong>", "<strong>Detail</strong>"],
+                                rows: [
+                                    ["State Income Tax Rate", "3.07% flat (all income levels)"],
+                                    ["Standard Deduction", "None"],
+                                    ["Personal Exemptions", "None"],
+                                    ["Brackets", "None — single flat rate"],
+                                    ["Reciprocal States", "NJ, MD, OH, VA, WV, IN, MI, KY"],
+                                    ["Retirement Income", "Many pension types exempt; Social Security generally not taxable in PA"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "State Payroll Taxes", icon: "fas fa-dollar-sign", color: "indigo", type: "state-payroll-taxes",
+                        details: [
+                            { label: "UC (Unemployment Compensation) — Employee", value: "0.07% on all wages — no wage base cap; employee portion is withheld" },
+                            { label: "UC — Employer", value: "1.419%–10.3734% experience-rated on first $10,000 per employee; new non-construction employer: ~3.689%" },
+                            { label: "No State SDI", value: "Pennsylvania does not have a state-funded short-term disability program" },
+                            { label: "No State PFL Program", value: "Pennsylvania does not have a state paid family and medical leave program; proposals exist but none enacted" },
+                            { label: "Workers Compensation", value: "Mandatory; regulated by Bureau of Workers' Compensation; employer must maintain coverage or be self-insured" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Pennsylvania Payroll Tax Summary 2025</strong>",
+                                headers: ["<strong>Tax</strong>", "<strong>Employee Rate</strong>", "<strong>Employer Rate</strong>", "<strong>Wage Base</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["State Income Tax (WH)", "3.07% flat", "N/A", "All wages", "Withheld from employee"],
+                                    ["UC — Employee portion", "0.07%", "0%", "No cap (all wages)", "Employee contribution"],
+                                    ["UC — Employer portion", "0%", "1.419%–10.3734%", "$10,000", "New employer ~3.689%; construction higher"],
+                                    ["SDI / PFL", "0%", "0%", "N/A", "No state program"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Local Taxes (Critical in PA)", icon: "fas fa-university", color: "orange", type: "local-taxes",
+                        details: [
+                            { label: "Earned Income Tax (EIT)", value: "Pennsylvania has 2,500+ local taxing jurisdictions; employees pay EIT to their municipality of RESIDENCE — not work location" },
+                            { label: "Non-Resident EIT", value: "Non-residents working in a PA municipality pay non-resident EIT to the work municipality; typically lower rate than resident" },
+                            { label: "Employer EIT Obligation", value: "Employers must withhold EIT for each employee's resident municipality; if residence unknown, withhold for work municipality" },
+                            { label: "Local Services Tax (LST)", value: "Up to $52/year per municipality where the employee works; pro-rated for employees working <12 months; deducted from paycheck" },
+                            { label: "Philadelphia Wage Tax", value: "Resident: 3.75% | Non-resident: 3.44% — applies to ALL wages earned in Philadelphia or by Philadelphia residents" },
+                            { label: "Pittsburgh", value: "Resident EIT: 3% | Non-resident: 1% for wages earned in Pittsburgh" },
+                            { label: "Tax Collectors", value: "Most PA local taxes administered by third-party collectors: Berkheimer Tax Administrator, Keystone Collections Group, Jordan Tax Service" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Major PA Local Tax Jurisdictions 2025</strong>",
+                                headers: ["<strong>Jurisdiction</strong>", "<strong>Resident EIT</strong>", "<strong>Non-Resident EIT</strong>", "<strong>LST</strong>", "<strong>Collector</strong>"],
+                                rows: [
+                                    ["Philadelphia", "3.75%", "3.44%", "N/A", "City of Philadelphia Revenue Dept."],
+                                    ["Pittsburgh", "3.00%", "1.00%", "$52/yr", "Jordan Tax Service"],
+                                    ["Allentown", "1.80%", "1.80%", "$52/yr", "Berkheimer"],
+                                    ["Erie", "1.18%", "1.18%", "$47/yr", "Keystone Collections"],
+                                    ["Harrisburg", "2.00%", "1.00%", "$52/yr", "Keystone Collections"],
+                                    ["Bethlehem", "1.00%", "1.00%", "$52/yr", "Berkheimer"],
+                                    ["Other PA municipalities", "Varies 0%–3.93%", "Typically ~1.00%", "Up to $52/yr", "Various collectors"]
+                                ]
+                            },
+                            {
+                                caption: "<strong>PA Employer EIT Withholding Scenarios</strong>",
+                                headers: ["<strong>Scenario</strong>", "<strong>Tax Owed To</strong>", "<strong>Employer Action</strong>"],
+                                rows: [
+                                    ["Employee lives and works in same municipality", "Home/work municipality", "Withhold resident EIT + LST at that rate"],
+                                    ["Employee lives in PA municipality A, works in municipality B", "Municipality A (resident EIT); Municipality B (LST)", "Withhold resident EIT for home muni; withhold LST for work muni"],
+                                    ["Employee lives in Philadelphia, works elsewhere in PA", "Philadelphia (resident rate 3.75%)", "Withhold Philadelphia resident wage tax"],
+                                    ["Non-PA resident works in PA", "Work municipality (non-resident EIT + LST)", "Withhold non-resident EIT at work location rate"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Employment Standards", icon: "fas fa-clipboard-list", color: "green", type: "employment-standards",
+                        details: [
+                            { label: "Minimum Wage", value: "$7.25/hr — PA equals federal minimum; periodic legislative proposals to increase have not passed as of 2025" },
+                            { label: "Philadelphia Minimum Wage (city contractors)", value: "$15.37/hr for city contracts and subcontractors" },
+                            { label: "Pay Frequency", value: "Semi-monthly for most employees; some industry sectors may differ under Wage Payment and Collection Law (WPCL)" },
+                            { label: "Final Pay", value: "Next regular payday; WPCL requires payment within 30 days of termination" },
+                            { label: "Overtime", value: "1.5× for hours over 40/week (federal FLSA); PA has no daily overtime requirement" },
+                            { label: "Wage Garnishments", value: "PA limits wage garnishment to 10% of net wages — more protective than federal 25% standard" },
+                            { label: "Non-Compete Agreements", value: "Generally enforceable in PA if reasonable in scope, duration, and geographic area; no blanket prohibition" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>PA Employment Standards Quick Reference</strong>",
+                                headers: ["<strong>Provision</strong>", "<strong>Requirement</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["Minimum Wage", "$7.25/hr", "No state increase; federal floor applies statewide"],
+                                    ["Overtime", "1.5× over 40 hrs/week", "No daily OT; FLSA governs"],
+                                    ["Pay Frequency", "Semi-monthly typical", "Wage Payment & Collection Law"],
+                                    ["Final Pay", "Next regular payday", "WPCL: max 30 days"],
+                                    ["Wage Garnishment Cap", "10% of net wages", "More protective than federal 25% rule"],
+                                    ["Workers Comp", "Mandatory", "Bureau of Workers' Compensation"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Key State Forms", icon: "fas fa-file-alt", color: "purple", type: "state-forms",
+                        details: [
+                            { label: "REV-1667 (W-2 Transmittal)", value: "Annual reconciliation of all PA wage withholding; filed electronically via myPATH by January 31" },
+                            { label: "PA-W3", value: "Employer Quarterly Withholding Reconciliation — filed via myPATH; due last day of month after quarter" },
+                            { label: "UC-2 / UC-2A", value: "Employer's Report for Unemployment Compensation — quarterly UC return; filed online at UC.PA.gov" },
+                            { label: "CLGS-32-1", value: "Local EIT Annual Return — filed with municipal tax collector (Berkheimer, Keystone, Jordan, etc.); annual employer EIT reconciliation" },
+                            { label: "LST Employer Form", value: "Local Services Tax employer quarterly remittance form; filed with work municipality's collector" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>PA Payroll Filing Calendar 2025</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>"],
+                                rows: [
+                                    ["PA-W3 (myPATH)", "State WH quarterly reconciliation", "Quarterly", "Apr 30, Jul 31, Oct 31, Jan 31"],
+                                    ["REV-1667", "Annual W-2 transmittal", "Annual", "January 31"],
+                                    ["UC-2 / UC-2A", "UI contributions + wages", "Quarterly", "Apr 30, Jul 31, Oct 31, Jan 31"],
+                                    ["Local EIT Reconciliation", "Annual local tax reconciliation", "Annual", "April 15 (prior year)"],
+                                    ["LST Quarterly Remittance", "Local Services Tax payment", "Quarterly", "Per collector schedule"]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "MA": {
+                stateName: "Massachusetts", stateFlag: "🦞",
+                payrollCategories: [
+                    {
+                        title: "State Income Tax", icon: "fas fa-percentage", color: "red", type: "state-income-tax",
+                        details: [
+                            { label: "Base Rate", value: "5.0% flat rate on wages, salaries, and ordinary income" },
+                            { label: "Millionaires Tax / Fair Share (eff. 2023)", value: "Additional 4% surtax on taxable income over $1,000,000 — total top rate: 9.0% (constitutional amendment passed Nov 2022)" },
+                            { label: "Short-Term Capital Gains", value: "8.5% for assets held under 12 months" },
+                            { label: "No Local Income Tax", value: "Massachusetts cities and towns do not impose a local income tax (unlike NY or PA)" },
+                            { label: "Withholding", value: "Employee files M-4 (MA Employee's Withholding Certificate); employer withholds at 5% on wages below $1M" },
+                            { label: "Health Insurance Mandate", value: "MA individual mandate (since 2006): residents must maintain minimum creditable coverage or face state penalty" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Massachusetts Income Tax Summary 2025</strong>",
+                                headers: ["<strong>Income Type</strong>", "<strong>Rate</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["Wages, salaries, ordinary income", "5.00%", "Base flat rate for most employees"],
+                                    ["Income over $1,000,000", "9.00%", "5% base + 4% Fair Share surtax"],
+                                    ["Short-term capital gains (<12 months)", "8.50%", "Higher rate for short-term gains"],
+                                    ["Long-term capital gains (12+ months)", "5.00%", "Same as ordinary income"],
+                                    ["PFML benefits received", "5.00%", "PFML benefits are taxable MA wages"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Paid Family & Medical Leave (PFML)", icon: "fas fa-calendar-alt", color: "teal", type: "pfml",
+                        details: [
+                            { label: "Program Overview", value: "MA PFML is one of the most comprehensive state leave programs in the US; covers most private employers and all employees" },
+                            { label: "Employee Contribution (2025)", value: "0.88% of wages up to Social Security wage base ($168,600): split as 0.70% medical leave + 0.18% family leave" },
+                            { label: "Employer Contribution (25+ employees)", value: "Employer contributes additional medical leave share; total combined rate for large employers ~1.30%" },
+                            { label: "Small Employer (<25 employees)", value: "Employer not required to pay employer share; employee still contributes at 0.88%" },
+                            { label: "Family Leave Benefit", value: "Up to 12 weeks; 80% of wages up to 50% of SAWW + 50% of wages above that; max ~$1,144.90/week (2025)" },
+                            { label: "Medical Leave Benefit", value: "Up to 20 weeks for own serious health condition; same benefit formula as family leave" },
+                            { label: "Prenatal Leave (new 2025)", value: "Up to 8 additional weeks for prenatal care and pregnancy-related conditions before the birth" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Massachusetts PFML Contributions 2025</strong>",
+                                headers: ["<strong>Contribution</strong>", "<strong>Rate</strong>", "<strong>Paid By</strong>", "<strong>Wage Base</strong>"],
+                                rows: [
+                                    ["Employee — Medical portion", "0.70%", "Employee", "$168,600"],
+                                    ["Employee — Family portion", "0.18%", "Employee", "$168,600"],
+                                    ["Total Employee Contribution", "0.88%", "Employee", "$168,600"],
+                                    ["Employer contribution (25+ EEs)", "Varies per size", "Employer", "$168,600"],
+                                    ["Employee annual maximum", "~$1,483.68", "Employee", "At SS wage base"]
+                                ]
+                            },
+                            {
+                                caption: "<strong>Massachusetts PFML Benefits 2025</strong>",
+                                headers: ["<strong>Leave Type</strong>", "<strong>Max Duration</strong>", "<strong>Benefit Rate</strong>", "<strong>Max Weekly (2025)</strong>"],
+                                rows: [
+                                    ["Family Leave (bonding, adoption)", "12 weeks", "80%/50% tiered (SAWW-based)", "~$1,144.90/wk"],
+                                    ["Medical Leave (own health)", "20 weeks", "80%/50% tiered", "~$1,144.90/wk"],
+                                    ["Military Exigency", "12 weeks", "80%/50% tiered", "~$1,144.90/wk"],
+                                    ["Care for Service Member", "26 weeks", "80%/50% tiered", "~$1,144.90/wk"],
+                                    ["Prenatal Leave (new 2025)", "Up to 8 weeks", "80%/50% tiered", "~$1,144.90/wk"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "State Payroll Taxes", icon: "fas fa-dollar-sign", color: "indigo", type: "state-payroll-taxes",
+                        details: [
+                            { label: "SUI (Unemployment)", value: "Employer-paid; new employer rate 2.42% on $15,000 wage base; experience-rated 0.56%–18.04%" },
+                            { label: "PFML Contributions", value: "See dedicated PFML tab — major MA-specific program with employee and employer components" },
+                            { label: "Workforce Training Fund (WTF)", value: "0.056% employer on first $15,000 per employee; funds MA technical and vocational workforce training" },
+                            { label: "No Separate SDI", value: "Short-term disability is handled through the PFML medical leave benefit; no separate SDI deduction" },
+                            { label: "Health Insurance Employer Assessment", value: "Employers with 6+ FT employees who don't offer qualifying insurance pay a Fair Share Contribution (~$77/uncovered employee/year)" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Massachusetts Payroll Tax Summary 2025</strong>",
+                                headers: ["<strong>Tax</strong>", "<strong>Employee Rate</strong>", "<strong>Employer Rate</strong>", "<strong>Wage Base</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["State Income Tax (WH)", "5.00% (9% >$1M)", "N/A", "All wages", "Fair Share surtax on wages >$1M"],
+                                    ["PFML — Employee Total", "0.88%", "Varies (large employers)", "$168,600", "0.70% medical + 0.18% family"],
+                                    ["SUI (Unemployment)", "0%", "2.42% new / 0.56%–18.04%", "$15,000", "Employer-only"],
+                                    ["Workforce Training Fund", "0%", "0.056%", "$15,000", "Employer-only"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Employment Standards", icon: "fas fa-clipboard-list", color: "green", type: "employment-standards",
+                        details: [
+                            { label: "Minimum Wage (2025)", value: "$15.00/hr statewide; tipped minimum: $6.75/hr (tip credit: $8.25/hr)" },
+                            { label: "Pay Frequency", value: "Weekly for most hourly workers; bi-weekly or semi-monthly for salaried/exempt; service employees: weekly" },
+                            { label: "Final Pay — Termination", value: "Day of termination — MA strictly enforces immediate payment upon discharge; no exceptions" },
+                            { label: "Final Pay — Resignation", value: "Next regular pay period" },
+                            { label: "Overtime", value: "1.5× for hours over 40/week; no daily overtime; Sunday premium pay for retail phased out by 2023" },
+                            { label: "Earned Sick Time", value: "1 hr per 30 hrs worked; max 40 hrs/year; paid for 11+ employee companies; unpaid for smaller employers" },
+                            { label: "Non-Compete Agreements (2018 Act)", value: "Max 1 year duration; must have garden leave or equivalent payment; cannot restrict new employees without notice" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Massachusetts Employment Standards Quick Reference</strong>",
+                                headers: ["<strong>Provision</strong>", "<strong>Requirement</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["Minimum Wage", "$15.00/hr", "Tipped: $6.75/hr cash (tip credit $8.25)"],
+                                    ["Overtime", "1.5× over 40 hrs/week", "No daily OT; Sunday premium phased out"],
+                                    ["Pay Frequency", "Weekly (hourly) / bi-weekly (salaried)", "Day laborers: weekly required"],
+                                    ["Final Pay (termination)", "Same day", "MA strictly enforces immediate discharge pay"],
+                                    ["Sick Time", "40 hrs/yr paid (11+ EEs)", "Unpaid for smaller employers"],
+                                    ["Non-Compete", "Max 1 yr + garden leave required", "MA Non-Compete Agreement Act (2018)"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Key State Forms", icon: "fas fa-file-alt", color: "purple", type: "state-forms",
+                        details: [
+                            { label: "M-4", value: "Massachusetts Employee's Withholding Exemption Certificate — employees use this for MA state withholding; keep on file" },
+                            { label: "M-941", value: "Employer's Return of Income Taxes Withheld — monthly or quarterly return filed with MA DOR; includes state income tax withheld" },
+                            { label: "WR-1", value: "Employer Registration — new employers register with MA DOR before first payroll; establishes withholding account" },
+                            { label: "PFML Quarterly Return", value: "Quarterly PFML contribution report filed at mass.gov/dfml; includes employee and employer PFML amounts" },
+                            { label: "MA UI Quarterly Return (UI-3)", value: "Filed via UI Online at mass.gov/dua; quarterly SUI contribution and wage report" },
+                            { label: "W-2 / M-3 Annual Reconciliation", value: "Annual W-2 statements and M-3 reconciliation filed with MA DOR by January 31" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>Massachusetts Payroll Filing Calendar 2025</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>"],
+                                rows: [
+                                    ["M-941", "State withholding return", "Monthly or quarterly", "15th of month (monthly); last day of month after quarter"],
+                                    ["PFML Quarterly Return", "Paid Family & Medical Leave contributions", "Quarterly", "Apr 30, Jul 31, Oct 31, Jan 31"],
+                                    ["MA SUI Return", "UI contributions", "Quarterly", "Apr 30, Jul 31, Oct 31, Jan 31"],
+                                    ["W-2 / M-3 Reconciliation", "Annual wage & withholding reconciliation", "Annual", "January 31"]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "DC": {
+                stateName: "District of Columbia", stateFlag: "🏛️",
+                payrollCategories: [
+                    {
+                        title: "DC Income Tax", icon: "fas fa-percentage", color: "red", type: "state-income-tax",
+                        details: [
+                            { label: "Tax System", value: "Progressive income tax with 7 brackets from 4% to 10.75% — DC is not a state but has full state-level tax authority" },
+                            { label: "Top Rate", value: "10.75% on income over $1,000,000 — one of the highest top rates in the US" },
+                            { label: "Residency Rules", value: "DC residents pay DC tax on worldwide income; non-residents pay DC tax only on DC-source income" },
+                            { label: "MD & VA Reciprocity", value: "DC has reciprocal agreements with Maryland and Virginia — MD/VA residents working in DC pay only home state tax; not DC tax" },
+                            { label: "Standard Deduction (2025)", value: "$12,950 single / $25,900 married jointly (DC generally conforms to federal standard deduction)" },
+                            { label: "Withholding", value: "Employee files D-4 (DC Employee Withholding Allowance Certificate); employer withholds per DC withholding tables" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>DC Income Tax Brackets 2025</strong>",
+                                headers: ["<strong>Taxable Income</strong>", "<strong>Rate</strong>"],
+                                rows: [
+                                    ["$0 – $10,000", "4.00%"],
+                                    ["$10,001 – $40,000", "6.00%"],
+                                    ["$40,001 – $60,000", "6.50%"],
+                                    ["$60,001 – $250,000", "8.50%"],
+                                    ["$250,001 – $500,000", "9.25%"],
+                                    ["$500,001 – $1,000,000", "9.75%"],
+                                    ["Over $1,000,000", "10.75%"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Universal Paid Leave (UPLA)", icon: "fas fa-calendar-alt", color: "teal", type: "paid-leave",
+                        details: [
+                            { label: "Program Overview", value: "DC Universal Paid Leave Act — one of the most generous paid leave programs in the US; administered by DC DOES" },
+                            { label: "Employer Contribution", value: "0.62% of all covered wages paid to DC employees — fully employer-paid; no employee deduction" },
+                            { label: "Prenatal Leave (unique to DC)", value: "Up to 2 weeks before birth — in addition to post-birth family leave; unique feature not in most state programs" },
+                            { label: "Family Leave Benefit", value: "12 weeks; 90% of wages up to 150% of DC minimum wage ($24.08/hr threshold); 50% above that; max ~$1,009/week" },
+                            { label: "Medical Leave Benefit", value: "12 weeks for employee's own serious health condition (expanded from 2 weeks in 2022); same benefit calculation" },
+                            { label: "Coverage", value: "Covers employees who spend >50% of work time in DC or are based in DC; includes part-time workers" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>DC Universal Paid Leave Summary</strong>",
+                                headers: ["<strong>Leave Type</strong>", "<strong>Duration</strong>", "<strong>Benefit Rate</strong>", "<strong>Max Weekly Benefit</strong>"],
+                                rows: [
+                                    ["Prenatal Leave (pre-birth)", "Up to 2 weeks", "90%/50% tiered (UPLA formula)", "~$1,009/wk"],
+                                    ["Family Leave (bonding/adoption)", "Up to 12 weeks", "90%/50% tiered", "~$1,009/wk"],
+                                    ["Medical Leave (own health)", "Up to 12 weeks", "90%/50% tiered", "~$1,009/wk"],
+                                    ["Care for family member", "Up to 12 weeks", "90%/50% tiered", "~$1,009/wk"],
+                                    ["Total potential max (per event)", "Up to 26 weeks", "Prenatal + family + medical", "Per event type"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "DC Payroll Taxes", icon: "fas fa-dollar-sign", color: "indigo", type: "state-payroll-taxes",
+                        details: [
+                            { label: "Universal Paid Leave (UPL)", value: "0.62% employer-paid on all DC-covered wages; no wage base cap; no employee deduction from paycheck" },
+                            { label: "Unemployment Insurance (UI)", value: "Employer-paid; new employer rate 2.7% on $9,000 wage base; experience-rated; administered by DC DOES" },
+                            { label: "No Employee PFML Deduction", value: "DC paid leave is 100% employer-funded via UPL contribution — employees do not have PFML deducted from wages" },
+                            { label: "No Separate SDI Program", value: "DC does not have a separate state disability insurance program; short-term disability covered by UPLA medical leave" },
+                            { label: "Workers Compensation", value: "Required; DC Workers' Compensation Act; employer must maintain coverage or self-insure; administered by DOES" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>DC Payroll Tax Summary 2025</strong>",
+                                headers: ["<strong>Tax</strong>", "<strong>Employee Rate</strong>", "<strong>Employer Rate</strong>", "<strong>Wage Base</strong>", "<strong>Notes</strong>"],
+                                rows: [
+                                    ["DC Income Tax (WH)", "4%–10.75%", "N/A", "All wages", "Withheld per D-4 and DC tables"],
+                                    ["Universal Paid Leave (UPL)", "0%", "0.62%", "No cap (all wages)", "Fully employer-funded; no EE deduction"],
+                                    ["Unemployment Insurance (UI)", "0%", "2.70% new / exp. rated", "$9,000", "Employer-paid; DC DOES"],
+                                    ["No EE PFML deduction", "0%", "N/A", "N/A", "DC leave 100% employer-funded"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Employment Standards", icon: "fas fa-clipboard-list", color: "green", type: "employment-standards",
+                        details: [
+                            { label: "Minimum Wage (2025)", value: "$17.50/hr — DC has one of the highest minimum wages in the US; adjusted annually per CPI or 5%, whichever is greater" },
+                            { label: "Tipped Minimum Wage", value: "DC is phasing out the tip credit via Initiative 82; tipped workers will reach full $17.50/hr minimum by 2027" },
+                            { label: "Pay Frequency", value: "Semi-monthly or more frequently; employer may choose weekly or bi-weekly" },
+                            { label: "Final Pay", value: "Next regular pay period or within 7 days per DC Wage Payment and Collection Law" },
+                            { label: "DC FMLA (more generous than federal)", value: "Covers employers with 20+ employees (vs. federal 50+); 16 weeks family leave + 16 weeks medical leave per 24-month period (unpaid)" },
+                            { label: "Accrued Sick Leave", value: "DC Accrued Sick & Safe Leave Act: 100+ employees: 7 days/yr; 25–99: 5 days/yr; <25: 3 days/yr (paid)" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>DC vs. Federal Employment Law Comparison</strong>",
+                                headers: ["<strong>Provision</strong>", "<strong>DC Requirement</strong>", "<strong>Federal Requirement</strong>", "<strong>DC More Generous?</strong>"],
+                                rows: [
+                                    ["Minimum Wage", "$17.50/hr (2025)", "$7.25/hr", "Yes"],
+                                    ["FMLA Coverage Threshold", "20+ employees", "50+ employees", "Yes — covers smaller employers"],
+                                    ["FMLA Leave Duration", "16 wks family + 16 wks medical", "12 weeks total", "Yes — longer and broader"],
+                                    ["Paid Leave", "Up to 26 weeks paid (UPLA)", "None (FMLA unpaid)", "Yes — fully paid"],
+                                    ["Overtime Threshold", "40 hrs/week", "40 hrs/week", "Same"],
+                                    ["Sick Leave", "3–7 days/yr paid", "No federal mandate", "Yes"]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "Key DC Forms", icon: "fas fa-file-alt", color: "purple", type: "state-forms",
+                        details: [
+                            { label: "D-4", value: "DC Employee Withholding Allowance Certificate — completed at hire; determines DC income tax withholding" },
+                            { label: "FR-900B", value: "Annual Return/Reconciliation of DC Withholding Tax — filed with DC OTR by January 31; reconciles all WH for the year" },
+                            { label: "FR-900Q", value: "DC Quarterly Withholding Return — due last day of month after quarter; includes DC income tax withheld" },
+                            { label: "UC-30", value: "Employer's Quarterly Contribution and Wage Report — unemployment insurance; filed via DC DOES UI Tax Online" },
+                            { label: "UPLA Quarterly Report", value: "Universal Paid Leave employer contribution report; filed quarterly with DC DOES alongside 0.62% payment" }
+                        ],
+                        tables: [
+                            {
+                                caption: "<strong>DC Payroll Filing Calendar 2025</strong>",
+                                headers: ["<strong>Form</strong>", "<strong>Purpose</strong>", "<strong>Frequency</strong>", "<strong>Due Date</strong>"],
+                                rows: [
+                                    ["FR-900Q", "Quarterly withholding return", "Quarterly", "Apr 30, Jul 31, Oct 31, Jan 31"],
+                                    ["FR-900B", "Annual withholding reconciliation", "Annual", "January 31"],
+                                    ["UC-30", "UI quarterly contributions + wages", "Quarterly", "Apr 30, Jul 31, Oct 31, Jan 31"],
+                                    ["UPLA Quarterly Report", "Universal Paid Leave contributions (0.62%)", "Quarterly", "Last day of month after quarter"],
+                                    ["W-2 to employees", "Annual wage statement", "Annual", "January 31"]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // ─── US STATES RENDER FUNCTIONS ───────────────────────────────────────────
+        const US_STATE_LIST = [
+            { code: 'NY', name: 'New York',                 flag: '🗽' },
+            { code: 'CA', name: 'California',               flag: '🐻' },
+            { code: 'IA', name: 'Iowa',                     flag: '🌽' },
+            { code: 'PA', name: 'Pennsylvania',             flag: '🔔' },
+            { code: 'MA', name: 'Massachusetts',            flag: '🦞' },
+            { code: 'DC', name: 'District of Columbia',     flag: '🏛️' }
+        ];
+
+        function renderStatesPage() {
+            const target = document.getElementById('us-states-page-content');
+            if (!target) return;
+            const activeState = window.currentState || 'NY';
+
+            const stateCards = US_STATE_LIST.map(s => `
+                <div class="cp-card ${s.code === activeState ? 'active' : ''}" data-state="${s.code}" onclick="selectState('${s.code}')">
+                    <span class="cp-flag">${s.flag}</span>
+                    <div class="cp-name">${s.name}</div>
+                </div>`).join('');
+
+            target.innerHTML = `
+                <div class="tk-hero" style="margin-bottom:1rem">
+                    <div class="tk-hero-glow"></div>
+                    <div class="tk-hero-inner">
+                        <div class="tk-hero-eyebrow"><i class="fas fa-flag-usa"></i> US State Payroll</div>
+                        <h1 class="tk-hero-title">State-by-State Payroll Rules</h1>
+                        <p class="tk-hero-sub">Each US state has its own income tax brackets, unemployment insurance, leave programs, and employment laws on top of federal requirements. Select a state below.</p>
+                    </div>
+                    <div class="tk-hero-stats">
+                        <div class="tk-stat"><div class="tk-stat-num">6</div><div class="tk-stat-lbl">States Covered</div></div>
+                        <div class="tk-stat"><div class="tk-stat-num">2025–26</div><div class="tk-stat-lbl">Updated</div></div>
+                    </div>
+                </div>
+
+                <div class="country-picker-wrapper" style="margin-bottom:1rem">
+                    <div class="cp-header" style="padding-bottom:0.25rem">
+                        <div style="font-size:0.7rem;font-weight:600;color:#71717A;text-transform:uppercase;letter-spacing:0.06em">Select a State</div>
+                    </div>
+                    <div class="cp-grid" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr))">${stateCards}</div>
+                </div>
+
+                <div class="payroll-container">
+                    <div class="payroll-sidebar">
+                        <h3 class="sidebar-title">State Categories</h3>
+                        <div id="state-categories"></div>
+                    </div>
+                    <div class="payroll-main">
+                        <div id="state-payroll-details">
+                            <div class="text-center text-gray-500 py-12">
+                                <i class="fas fa-flag-usa text-4xl mb-4"></i>
+                                <p class="text-base">Select a category from the left to view state payroll details</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:1.5rem;padding:0.85rem 1.1rem;background:#FAFAFA;border:1px solid #E4E4E7;border-radius:10px;font-size:0.72rem;color:#71717A;display:flex;gap:0.6rem;align-items:flex-start">
+                    <i class="fas fa-circle-info" style="margin-top:0.1rem;flex-shrink:0"></i>
+                    <span><strong>State-level reference only.</strong> State payroll rules change frequently — always verify current rates, wage bases, and forms with the applicable state agency. Federal obligations (FICA, FUTA, federal income tax withholding) apply in addition to all state requirements listed here.</span>
+                </div>`;
+
+            renderStatePayroll(activeState);
+        }
+
+        window.selectState = function(stateCode) {
+            window.currentState = stateCode;
+            document.querySelectorAll('[data-state]').forEach(c => c.classList.remove('active'));
+            const sel = document.querySelector(`[data-state="${stateCode}"]`);
+            if (sel) sel.classList.add('active');
+            renderStatePayroll(stateCode);
+        };
+
+        function renderStatePayroll(stateCode) {
+            window.currentState = stateCode;
+            const state = stateData[stateCode];
+            if (!state) return;
+
+            const categoriesContainer = document.getElementById('state-categories');
+            const detailsContainer = document.getElementById('state-payroll-details');
+            if (!categoriesContainer || !detailsContainer) return;
+
+            categoriesContainer.innerHTML = '';
+            let initialCategory = null;
+
+            state.payrollCategories.forEach((category, index) => {
+                const button = document.createElement('button');
+                button.className = 'payroll-nav-card';
+                const colorCode = category.color;
+                button.innerHTML = `
+                    <i class="${category.icon} nav-card-icon text-${colorCode}-600"></i>
+                    <div class="nav-card-title">${category.title}</div>`;
+                button.addEventListener('click', (e) => {
+                    document.querySelectorAll('#state-categories .payroll-nav-card').forEach(b => b.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                    showStateDetails(category, stateCode);
+                });
+                categoriesContainer.appendChild(button);
+                if (index === 0) initialCategory = category;
+            });
+
+            if (initialCategory) {
+                const firstBtn = categoriesContainer.querySelector('.payroll-nav-card');
+                if (firstBtn) firstBtn.classList.add('active');
+                showStateDetails(initialCategory, stateCode);
+            }
+        }
+
+        function showStateDetails(category, stateCode) {
+            const colorCode = category.color;
+            const cardColorClass = `text-${colorCode}-600`;
+            const borderClass = `border-${colorCode}-400`;
+            const sinfo = US_STATE_LIST.find(s => s.code === stateCode);
+
+            let detailContent = '';
+            if (sinfo) {
+                detailContent += `<div class="pm-breadcrumb">
+                    <span class="crumb-flag">${sinfo.flag}</span>
+                    <span class="crumb-country">${sinfo.name}</span>
+                    <i class="fas fa-chevron-right crumb-sep" style="font-size:0.65rem"></i>
+                    <span class="crumb-cat">${category.title}</span>
+                </div>`;
+            }
+
+            detailContent += `<ul class="space-y-2 text-gray-700 mb-6" style="font-size:0.8rem">`;
+            category.details.forEach(item => {
+                detailContent += `<li class="flex items-start">
+                    <span class="${cardColorClass} font-bold mr-2">✓</span>
+                    <span><span class="font-semibold">${item.label}:</span> ${item.value}</span>
+                </li>`;
+            });
+            detailContent += `</ul>`;
+
+            if (category.tables && Array.isArray(category.tables)) {
+                category.tables.forEach(table => {
+                    detailContent += createTable(table, colorCode);
+                });
+            }
+
+            const container = document.getElementById('state-payroll-details');
+            if (container) {
+                container.innerHTML = `
+                    <div class="benefits-card p-6 bg-white rounded-xl shadow-lg border-t-4 ${borderClass} card-reveal"
+                         style="--card-color: var(--color-${colorCode});">
+                        <div class="card-header border-b border-gray-100 pb-4 mb-4">
+                            <h2 class="text-lg font-bold text-gray-900 flex items-center">
+                                <i class="${category.icon} text-2xl mr-3 ${cardColorClass}"></i> ${category.title}
+                            </h2>
+                        </div>
+                        ${detailContent}
+                    </div>`;
+            }
         }
     </script>
 </body>
